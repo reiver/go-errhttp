@@ -20,12 +20,12 @@ Package **errhttp** provides types errors that make dealing with HTTP response e
 		//@TODO
 	case errhttp.NotFound:
 		//@TODO
-	case errhtp.InternalServerError:
+	case errhttp.InternalServerError:
 		//@TODO
 	
-	case errhtp.ClientError:
+	case errhttp.ClientError:
 		//@TODO
-	case errhtp.ServerError:
+	case errhttp.ServerError:
 		//@TODO
 	
 	default:
