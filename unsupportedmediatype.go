@@ -29,6 +29,10 @@ func (receiver internalUnsupportedMediaType) Err() error {
 	return receiver.err
 }
 
+func (internalUnsupportedMediaType) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalUnsupportedMediaType) ClientError() {
 	// Nothing here.
 }

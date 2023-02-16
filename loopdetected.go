@@ -31,6 +31,10 @@ func (receiver internalLoopDetected) Err() error {
 	return receiver.err
 }
 
+func (internalLoopDetected) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalLoopDetected) ServerError() {
 	// Nothing here.
 }

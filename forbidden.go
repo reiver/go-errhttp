@@ -29,6 +29,10 @@ func (receiver internalForbidden) Err() error {
 	return receiver.err
 }
 
+func (internalForbidden) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalForbidden) ClientError() {
 	// Nothing here.
 }

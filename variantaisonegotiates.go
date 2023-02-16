@@ -31,6 +31,10 @@ func (receiver internalVariantAlsoNegotiates) Err() error {
 	return receiver.err
 }
 
+func (internalVariantAlsoNegotiates) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalVariantAlsoNegotiates) ServerError() {
 	// Nothing here.
 }

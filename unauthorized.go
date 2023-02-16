@@ -29,6 +29,10 @@ func (receiver internalUnauthorized) Err() error {
 	return receiver.err
 }
 
+func (internalUnauthorized) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalUnauthorized) ClientError() {
 	// Nothing here.
 }

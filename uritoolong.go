@@ -29,6 +29,10 @@ func (receiver internalURITooLong) Err() error {
 	return receiver.err
 }
 
+func (internalURITooLong) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalURITooLong) ClientError() {
 	// Nothing here.
 }

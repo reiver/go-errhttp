@@ -29,6 +29,10 @@ func (receiver internalTooManyRequests) Err() error {
 	return receiver.err
 }
 
+func (internalTooManyRequests) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalTooManyRequests) ClientError() {
 	// Nothing here.
 }

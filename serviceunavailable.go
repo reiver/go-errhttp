@@ -29,6 +29,10 @@ func (receiver internalServiceUnavailable) Err() error {
 	return receiver.err
 }
 
+func (internalServiceUnavailable) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalServiceUnavailable) ServerError() {
 	// Nothing here.
 }

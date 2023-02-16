@@ -29,6 +29,10 @@ func (receiver internalPayloadTooLarge) Err() error {
 	return receiver.err
 }
 
+func (internalPayloadTooLarge) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalPayloadTooLarge) ClientError() {
 	// Nothing here.
 }

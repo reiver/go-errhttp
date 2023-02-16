@@ -29,6 +29,11 @@ func (receiver internalPaymentRequired) Err() error {
 	return receiver.err
 }
 
+func (internalPaymentRequired) ErrHTTP() {
+	// Nothing here.
+}
+
+
 func (internalPaymentRequired) ClientError() {
 	// Nothing here.
 }

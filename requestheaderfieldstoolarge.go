@@ -30,6 +30,10 @@ func (receiver internalRequestHeaderFieldsTooLarge) Err() error {
 	return receiver.err
 }
 
+func (internalRequestHeaderFieldsTooLarge) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalRequestHeaderFieldsTooLarge) ClientError() {
 	// Nothing here.
 }

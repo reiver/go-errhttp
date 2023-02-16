@@ -31,6 +31,10 @@ func (receiver internalBadGateway) Err() error {
 	return receiver.err
 }
 
+func (internalBadGateway) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalBadGateway) ServerError() {
 	// Nothing here.
 }

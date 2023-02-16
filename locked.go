@@ -29,6 +29,10 @@ func (receiver internalLocked) Err() error {
 	return receiver.err
 }
 
+func (internalLocked) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalLocked) ClientError() {
 	// Nothing here.
 }

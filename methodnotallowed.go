@@ -29,6 +29,10 @@ func (receiver internalMethodNotAllowed) Err() error {
 	return receiver.err
 }
 
+func (internalMethodNotAllowed) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalMethodNotAllowed) ClientError() {
 	// Nothing here.
 }

@@ -30,6 +30,10 @@ func (receiver internalRequestTimeout) Err() error {
 	return receiver.err
 }
 
+func (internalRequestTimeout) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalRequestTimeout) ClientError() {
 	// Nothing here.
 }

@@ -29,6 +29,10 @@ func (receiver internalBadRequest) Err() error {
 	return receiver.err
 }
 
+func (internalBadRequest) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalBadRequest) ClientError() {
 	// Nothing here.
 }

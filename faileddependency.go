@@ -29,6 +29,10 @@ func (receiver internalFailedDependency) Err() error {
 	return receiver.err
 }
 
+func (internalFailedDependency) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalFailedDependency) ClientError() {
 	// Nothing here.
 }

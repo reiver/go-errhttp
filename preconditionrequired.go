@@ -29,6 +29,10 @@ func (receiver internalPreconditionRequired) Err() error {
 	return receiver.err
 }
 
+func (internalPreconditionRequired) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalPreconditionRequired) ClientError() {
 	// Nothing here.
 }

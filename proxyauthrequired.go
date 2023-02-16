@@ -29,6 +29,10 @@ func (receiver internalProxyAuthRequired) Err() error {
 	return receiver.err
 }
 
+func (internalProxyAuthRequired) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalProxyAuthRequired) ClientError() {
 	// Nothing here.
 }

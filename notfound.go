@@ -29,6 +29,10 @@ func (receiver internalNotFound ) Err() error {
 	return receiver.err
 }
 
+func (internalNotFound ) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalNotFound ) ClientError() {
 	// Nothing here.
 }

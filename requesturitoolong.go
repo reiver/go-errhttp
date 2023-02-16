@@ -30,6 +30,10 @@ func (receiver internalRequestURITooLong) Err() error {
 	return receiver.err
 }
 
+func (internalRequestURITooLong) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalRequestURITooLong) ClientError() {
 	// Nothing here.
 }

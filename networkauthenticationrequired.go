@@ -31,6 +31,10 @@ func (receiver internalNetworkAuthenticationRequired) Err() error {
 	return receiver.err
 }
 
+func (internalNetworkAuthenticationRequired) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalNetworkAuthenticationRequired) ServerError() {
 	// Nothing here.
 }

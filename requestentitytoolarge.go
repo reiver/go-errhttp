@@ -29,6 +29,10 @@ func (receiver internalRequestEntityTooLarge) Err() error {
 	return receiver.err
 }
 
+func (internalRequestEntityTooLarge) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalRequestEntityTooLarge) ClientError() {
 	// Nothing here.
 }

@@ -29,6 +29,10 @@ func (receiver internalExpectationFailed) Err() error {
 	return receiver.err
 }
 
+func (internalExpectationFailed) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalExpectationFailed) ClientError() {
 	// Nothing here.
 }

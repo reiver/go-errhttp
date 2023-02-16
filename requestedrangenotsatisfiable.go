@@ -29,6 +29,10 @@ func (receiver internalRequestedRangeNotSatisfiable) Err() error {
 	return receiver.err
 }
 
+func (internalRequestedRangeNotSatisfiable) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalRequestedRangeNotSatisfiable) ClientError() {
 	// Nothing here.
 }

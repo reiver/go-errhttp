@@ -29,6 +29,10 @@ func (receiver internalTeapot) Err() error {
 	return receiver.err
 }
 
+func (internalTeapot) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalTeapot) ClientError() {
 	// Nothing here.
 }

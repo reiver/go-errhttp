@@ -31,6 +31,10 @@ func (receiver internalHTTPVersionNotSupported) Err() error {
 	return receiver.err
 }
 
+func (internalHTTPVersionNotSupported) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalHTTPVersionNotSupported) ServerError() {
 	// Nothing here.
 }

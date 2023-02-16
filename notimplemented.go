@@ -31,6 +31,10 @@ func (receiver internalNotImplemented) Err() error {
 	return receiver.err
 }
 
+func (internalNotImplemented) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalNotImplemented) ServerError() {
 	// Nothing here.
 }

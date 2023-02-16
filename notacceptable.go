@@ -29,6 +29,10 @@ func (receiver internalNotAcceptable) Err() error {
 	return receiver.err
 }
 
+func (internalNotAcceptable) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalNotAcceptable) ClientError() {
 	// Nothing here.
 }

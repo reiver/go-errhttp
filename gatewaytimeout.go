@@ -31,6 +31,10 @@ func (receiver internalGatewayTimeout) Err() error {
 	return receiver.err
 }
 
+func (internalGatewayTimeout) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalGatewayTimeout) ServerError() {
 	// Nothing here.
 }

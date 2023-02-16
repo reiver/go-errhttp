@@ -29,6 +29,10 @@ func (receiver internalUpgradeRequired) Err() error {
 	return receiver.err
 }
 
+func (internalUpgradeRequired) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalUpgradeRequired) ClientError() {
 	// Nothing here.
 }

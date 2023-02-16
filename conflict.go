@@ -29,6 +29,10 @@ func (receiver internalConflict) Err() error {
 	return receiver.err
 }
 
+func (internalConflict) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalConflict) ClientError() {
 	// Nothing here.
 }

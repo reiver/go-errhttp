@@ -31,6 +31,10 @@ func (receiver internalInsufficientStorage) Err() error {
 	return receiver.err
 }
 
+func (internalInsufficientStorage) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalInsufficientStorage) ServerError() {
 	// Nothing here.
 }

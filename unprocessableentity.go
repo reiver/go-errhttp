@@ -29,6 +29,10 @@ func (receiver internalUnprocessableEntity) Err() error {
 	return receiver.err
 }
 
+func (internalUnprocessableEntity) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalUnprocessableEntity) ClientError() {
 	// Nothing here.
 }

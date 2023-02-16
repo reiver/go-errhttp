@@ -29,6 +29,10 @@ func (receiver internalUnavailableForLegalReasons) Err() error {
 	return receiver.err
 }
 
+func (internalUnavailableForLegalReasons) ErrHTTP() {
+	// Nothing here.
+}
+
 func (internalUnavailableForLegalReasons) ClientError() {
 	// Nothing here.
 }
