@@ -30,3 +30,7 @@ func (internalRequestEntityTooLarge) ClientError() {
 func (internalRequestEntityTooLarge) RequestEntityTooLarge() {
 	// Nothing here.
 }
+
+func (receiver internalRequestEntityTooLarge) Unwrap() error {
+	return receiver.err
+}

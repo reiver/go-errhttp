@@ -31,3 +31,6 @@ func (internalMethodNotAllowed) MethodNotAllowed() {
 	// Nothing here.
 }
 
+func (receiver internalMethodNotAllowed) Unwrap() error {
+	return receiver.err
+}

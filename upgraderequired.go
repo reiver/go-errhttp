@@ -30,3 +30,7 @@ func (internalUpgradeRequired) ClientError() {
 func (internalUpgradeRequired) UpgradeRequired() {
 	// Nothing here.
 }
+
+func (receiver internalUpgradeRequired) Unwrap() error {
+	return receiver.err
+}

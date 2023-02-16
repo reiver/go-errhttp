@@ -5,6 +5,8 @@ type NetworkAuthenticationRequired interface {
 	NetworkAuthenticationRequired()
 }
 
+var _ NetworkAuthenticationRequired = internalNetworkAuthenticationRequired{}
+
 type internalNetworkAuthenticationRequired struct {
 	err error
 }
@@ -29,4 +31,8 @@ func (internalNetworkAuthenticationRequired) ServerError() {
 
 func (internalNetworkAuthenticationRequired) NetworkAuthenticationRequired() {
 	// Nothing here.
+}
+
+func (receiver internalNetworkAuthenticationRequired) Unwrap() error {
+	return receiver.err
 }

@@ -31,3 +31,6 @@ func (internalForbidden) Forbidden() {
 	// Nothing here.
 }
 
+func (receiver internalForbidden) Unwrap() error {
+	return receiver.err
+}

@@ -31,3 +31,7 @@ func (internalRequestURITooLong) ClientError() {
 func (internalRequestURITooLong) RequestURITooLong() {
 	// Nothing here.
 }
+
+func (receiver internalRequestURITooLong) Unwrap() error {
+	return receiver.err
+}

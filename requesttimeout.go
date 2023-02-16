@@ -31,3 +31,7 @@ func (internalRequestTimeout) ClientError() {
 func (internalRequestTimeout) RequestTimeout() {
 	// Nothing here.
 }
+
+func (receiver internalRequestTimeout) Unwrap() error {
+	return receiver.err
+}

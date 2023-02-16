@@ -30,3 +30,7 @@ func (internalPreconditionFailed) ClientError() {
 func (internalPreconditionFailed) PreconditionFailed() {
 	// Nothing here.
 }
+
+func (receiver internalPreconditionFailed) Unwrap() error {
+	return receiver.err
+}

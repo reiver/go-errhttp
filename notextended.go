@@ -5,6 +5,8 @@ type NotExtended interface {
 	NotExtended()
 }
 
+var _ NotExtended = internalNotExtended{}
+
 type internalNotExtended struct {
 	err error
 }
@@ -29,4 +31,8 @@ func (internalNotExtended) ServerError() {
 
 func (internalNotExtended) NotExtended() {
 	// Nothing here.
+}
+
+func (receiver internalNotExtended) Unwrap() error {
+	return receiver.err
 }

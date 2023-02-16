@@ -30,3 +30,7 @@ func (internalTooManyRequests) ClientError() {
 func (internalTooManyRequests) TooManyRequests() {
 	// Nothing here.
 }
+
+func (receiver internalTooManyRequests) Unwrap() error {
+	return receiver.err
+}

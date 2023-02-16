@@ -31,3 +31,6 @@ func (internalLengthRequired) LengthRequired() {
 	// Nothing here.
 }
 
+func (receiver internalLengthRequired) Unwrap() error {
+	return receiver.err
+}

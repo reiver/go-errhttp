@@ -5,6 +5,8 @@ type NotImplemented interface {
 	NotImplemented()
 }
 
+var _ NotImplemented = internalNotImplemented{}
+
 type internalNotImplemented struct {
 	err error
 }
@@ -29,4 +31,8 @@ func (internalNotImplemented) ServerError() {
 
 func (internalNotImplemented) NotImplemented() {
 	// Nothing here.
+}
+
+func (receiver internalNotImplemented) Unwrap() error {
+	return receiver.err
 }

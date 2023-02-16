@@ -30,3 +30,7 @@ func (internalNotFound ) ClientError() {
 func (internalNotFound ) NotFound() {
 	// Nothing here.
 }
+
+func (receiver internalNotFound) Unwrap() error {
+	return receiver.err
+}

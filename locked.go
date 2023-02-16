@@ -30,3 +30,7 @@ func (internalLocked) ClientError() {
 func (internalLocked) Locked() {
 	// Nothing here.
 }
+
+func (receiver internalLocked) Unwrap() error {
+	return receiver.err
+}

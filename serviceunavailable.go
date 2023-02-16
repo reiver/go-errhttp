@@ -30,3 +30,7 @@ func (internalServiceUnavailable) ServerError() {
 func (internalServiceUnavailable) ServiceUnavailable() {
 	// Nothing here.
 }
+
+func (receiver internalServiceUnavailable) Unwrap() error {
+	return receiver.err
+}

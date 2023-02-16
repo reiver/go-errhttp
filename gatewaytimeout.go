@@ -5,6 +5,8 @@ type GatewayTimeout interface {
 	GatewayTimeout()
 }
 
+var _ GatewayTimeout = internalGatewayTimeout{}
+
 type internalGatewayTimeout struct {
 	err error
 }
@@ -29,4 +31,8 @@ func (internalGatewayTimeout) ServerError() {
 
 func (internalGatewayTimeout) GatewayTimeout() {
 	// Nothing here.
+}
+
+func (receiver internalGatewayTimeout) Unwrap() error {
+	return receiver.err
 }

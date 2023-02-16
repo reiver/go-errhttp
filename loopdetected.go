@@ -5,6 +5,8 @@ type LoopDetected interface {
 	LoopDetected()
 }
 
+var _ LoopDetected = internalLoopDetected{}
+
 type internalLoopDetected struct {
 	err error
 }
@@ -29,4 +31,8 @@ func (internalLoopDetected) ServerError() {
 
 func (internalLoopDetected) LoopDetected() {
 	// Nothing here.
+}
+
+func (receiver internalLoopDetected) Unwrap() error {
+	return receiver.err
 }

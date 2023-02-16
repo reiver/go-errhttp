@@ -31,3 +31,6 @@ func (internalGone) Gone() {
 	// Nothing here.
 }
 
+func (receiver internalGone) Unwrap() error {
+	return receiver.err
+}

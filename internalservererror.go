@@ -5,6 +5,8 @@ type InternalServerError interface {
 	InternalServerError()
 }
 
+var _ InternalServerError = internalInternalServerError{}
+
 type internalInternalServerError struct {
 	err error
 }
@@ -29,4 +31,8 @@ func (internalInternalServerError) ServerError() {
 
 func (internalInternalServerError) InternalServerError() {
 	// Nothing here.
+}
+
+func (receiver internalInternalServerError) Unwrap() error {
+	return receiver.err
 }

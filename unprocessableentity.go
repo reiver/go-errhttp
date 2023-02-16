@@ -30,3 +30,7 @@ func (internalUnprocessableEntity) ClientError() {
 func (internalUnprocessableEntity) UnprocessableEntity() {
 	// Nothing here.
 }
+
+func (receiver internalUnprocessableEntity) Unwrap() error {
+	return receiver.err
+}

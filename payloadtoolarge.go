@@ -30,3 +30,7 @@ func (internalPayloadTooLarge) ClientError() {
 func (internalPayloadTooLarge) PayloadTooLarge() {
 	// Nothing here.
 }
+
+func (receiver internalPayloadTooLarge) Unwrap() error {
+	return receiver.err
+}

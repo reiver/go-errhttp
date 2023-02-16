@@ -31,3 +31,6 @@ func (internalFailedDependency) FailedDependency() {
 	// Nothing here.
 }
 
+func (receiver internalFailedDependency) Unwrap() error {
+	return receiver.err
+}

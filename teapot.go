@@ -30,3 +30,7 @@ func (internalTeapot) ClientError() {
 func (internalTeapot) Teapot() {
 	// Nothing here.
 }
+
+func (receiver internalTeapot) Unwrap() error {
+	return receiver.err
+}

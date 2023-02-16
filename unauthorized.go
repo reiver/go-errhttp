@@ -30,3 +30,7 @@ func (internalUnauthorized) ClientError() {
 func (internalUnauthorized) Unauthorized() {
 	// Nothing here.
 }
+
+func (receiver internalUnauthorized) Unwrap() error {
+	return receiver.err
+}

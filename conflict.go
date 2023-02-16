@@ -30,3 +30,7 @@ func (internalConflict) ClientError() {
 func (internalConflict) Conflict() {
 	// Nothing here.
 }
+
+func (receiver internalConflict) Unwrap() error {
+	return receiver.err
+}

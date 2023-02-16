@@ -30,3 +30,7 @@ func (internalExpectationFailed) ClientError() {
 func (internalExpectationFailed) ExpectationFailed() {
 	// Nothing here.
 }
+
+func (receiver internalExpectationFailed) Unwrap() error {
+	return receiver.err
+}

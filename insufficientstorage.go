@@ -5,6 +5,8 @@ type InsufficientStorage interface {
 	InsufficientStorage()
 }
 
+var _ InsufficientStorage = internalInsufficientStorage{}
+
 type internalInsufficientStorage struct {
 	err error
 }
@@ -29,4 +31,8 @@ func (internalInsufficientStorage) ServerError() {
 
 func (internalInsufficientStorage) InsufficientStorage() {
 	// Nothing here.
+}
+
+func (receiver internalInsufficientStorage) Unwrap() error {
+	return receiver.err
 }

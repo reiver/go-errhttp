@@ -30,3 +30,7 @@ func (internalBadRequest) ClientError() {
 func (internalBadRequest) BadRequest() {
 	// Nothing here.
 }
+
+func (receiver internalBadRequest) Unwrap() error {
+	return receiver.err
+}

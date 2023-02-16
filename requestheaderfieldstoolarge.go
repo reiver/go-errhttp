@@ -31,3 +31,7 @@ func (internalRequestHeaderFieldsTooLarge) ClientError() {
 func (internalRequestHeaderFieldsTooLarge) RequestHeaderFieldsTooLarge() {
 	// Nothing here.
 }
+
+func (receiver internalRequestHeaderFieldsTooLarge) Unwrap() error {
+	return receiver.err
+}

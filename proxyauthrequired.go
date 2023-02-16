@@ -30,3 +30,7 @@ func (internalProxyAuthRequired) ClientError() {
 func (internalProxyAuthRequired) ProxyAuthRequired() {
 	// Nothing here.
 }
+
+func (receiver internalProxyAuthRequired) Unwrap() error {
+	return receiver.err
+}

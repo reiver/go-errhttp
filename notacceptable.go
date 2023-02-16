@@ -30,3 +30,7 @@ func (internalNotAcceptable) ClientError() {
 func (internalNotAcceptable) NotAcceptable() {
 	// Nothing here.
 }
+
+func (receiver internalNotAcceptable) Unwrap() error {
+	return receiver.err
+}

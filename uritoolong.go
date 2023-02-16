@@ -30,3 +30,7 @@ func (internalURITooLong) ClientError() {
 func (internalURITooLong) URITooLong() {
 	// Nothing here.
 }
+
+func (receiver internalURITooLong) Unwrap() error {
+	return receiver.err
+}

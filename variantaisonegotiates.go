@@ -5,6 +5,8 @@ type VariantAlsoNegotiates interface {
 	VariantAlsoNegotiates()
 }
 
+var _ VariantAlsoNegotiates = internalVariantAlsoNegotiates{}
+
 type internalVariantAlsoNegotiates struct {
 	err error
 }
@@ -29,4 +31,8 @@ func (internalVariantAlsoNegotiates) ServerError() {
 
 func (internalVariantAlsoNegotiates) VariantAlsoNegotiates() {
 	// Nothing here.
+}
+
+func (receiver internalVariantAlsoNegotiates) Unwrap() error {
+	return receiver.err
 }

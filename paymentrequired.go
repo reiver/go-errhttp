@@ -30,3 +30,7 @@ func (internalPaymentRequired) ClientError() {
 func (internalPaymentRequired) PaymentRequired() {
 	// Nothing here.
 }
+
+func (receiver internalPaymentRequired) Unwrap() error {
+	return receiver.err
+}

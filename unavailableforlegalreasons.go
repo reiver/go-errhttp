@@ -31,3 +31,6 @@ func (internalUnavailableForLegalReasons) UnavailableForLegalReasons() {
 	// Nothing here.
 }
 
+func (receiver internalUnavailableForLegalReasons) Unwrap() error {
+	return receiver.err
+}

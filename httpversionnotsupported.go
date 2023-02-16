@@ -5,6 +5,8 @@ type HTTPVersionNotSupported interface {
 	HTTPVersionNotSupported()
 }
 
+var _ HTTPVersionNotSupported = internalHTTPVersionNotSupported{}
+
 type internalHTTPVersionNotSupported struct {
 	err error
 }
@@ -29,4 +31,8 @@ func (internalHTTPVersionNotSupported) ServerError() {
 
 func (internalHTTPVersionNotSupported) HTTPVersionNotSupported() {
 	// Nothing here.
+}
+
+func (receiver internalHTTPVersionNotSupported) Unwrap() error {
+	return receiver.err
 }

@@ -30,3 +30,7 @@ func (internalRequestedRangeNotSatisfiable) ClientError() {
 func (internalRequestedRangeNotSatisfiable) RequestedRangeNotSatisfiable() {
 	// Nothing here.
 }
+
+func (receiver internalRequestedRangeNotSatisfiable) Unwrap() error {
+	return receiver.err
+}

@@ -5,6 +5,8 @@ type BadGateway interface {
 	BadGateway()
 }
 
+var _ BadGateway = internalBadGateway{}
+
 type internalBadGateway struct {
 	err error
 }
@@ -29,4 +31,8 @@ func (internalBadGateway) ServerError() {
 
 func (internalBadGateway) BadGateway() {
 	// Nothing here.
+}
+
+func (receiver internalBadGateway) Unwrap() error {
+	return receiver.err
 }

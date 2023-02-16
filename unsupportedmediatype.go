@@ -30,3 +30,7 @@ func (internalUnsupportedMediaType) ClientError() {
 func (internalUnsupportedMediaType) UnsupportedMediaType() {
 	// Nothing here.
 }
+
+func (receiver internalUnsupportedMediaType) Unwrap() error {
+	return receiver.err
+}

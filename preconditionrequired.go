@@ -31,3 +31,6 @@ func (internalPreconditionRequired) PreconditionRequired() {
 	// Nothing here.
 }
 
+func (receiver internalPreconditionRequired) Unwrap() error {
+	return receiver.err
+}
