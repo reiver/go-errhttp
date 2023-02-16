@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrPaymentRequired error = PaymentRequiredWrap(errors.New("Payment Required"))
+
 type PaymentRequired interface {
 	ClientError
 	PaymentRequired()

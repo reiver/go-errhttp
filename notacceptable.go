@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrNotAcceptable error = NotAcceptableWrap(errors.New("Not Acceptable"))
+
 type NotAcceptable interface {
 	ClientError
 	NotAcceptable()

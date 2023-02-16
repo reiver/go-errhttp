@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrVariantAlsoNegotiates error = VariantAlsoNegotiatesWrap(errors.New("Variant Also Negotiates"))
+
 type VariantAlsoNegotiates interface {
 	ServerError
 	VariantAlsoNegotiates()

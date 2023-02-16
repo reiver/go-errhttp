@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrProxyAuthRequired error = ProxyAuthRequiredWrap(errors.New("Proxy Auth Required"))
+
 type ProxyAuthRequired interface {
 	ClientError
 	ProxyAuthRequired()

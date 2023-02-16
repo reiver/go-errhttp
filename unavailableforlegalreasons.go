@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrUnavailableForLegalReasons error = UnavailableForLegalReasonsWrap(errors.New("Unavailable For Legal Reasons"))
+
 type UnavailableForLegalReasons interface {
 	ClientError
 	UnavailableForLegalReasons()

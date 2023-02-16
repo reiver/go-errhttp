@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrBadRequest = BadRequestWrap(errors.New("Bad Request"))
+
 type BadRequest interface {
 	ClientError
 	BadRequest()

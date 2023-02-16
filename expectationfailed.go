@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrExpectationFailed error = ExpectationFailedWrap(errors.New("Expectation Failed"))
+
 type ExpectationFailed interface {
 	ClientError
 	ExpectationFailed()

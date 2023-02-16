@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrRequestedRangeNotSatisfiable error = RequestedRangeNotSatisfiableWrap(errors.New("Requested Range Not Satisfiable"))
+
 type RequestedRangeNotSatisfiable interface {
 	ClientError
 	RequestedRangeNotSatisfiable()

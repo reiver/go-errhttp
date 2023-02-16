@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrLocked error = LockedWrap(errors.New("Locked"))
+
 type Locked interface {
 	ClientError
 	Locked()

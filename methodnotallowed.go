@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrMethodNotAllowed error = MethodNotAllowedWrap(errors.New("Method Not Allowed"))
+
 type MethodNotAllowed interface {
 	ClientError
 	MethodNotAllowed()

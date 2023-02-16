@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrUpgradeRequired error = UpgradeRequiredWrap(errors.New("Upgrade Required"))
+
 type UpgradeRequired interface {
 	ClientError
 	UpgradeRequired()

@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrInternalServerError error = InternalServerErrorWrap(errors.New("Internal Server Error"))
+
 type InternalServerError interface {
 	ServerError
 	InternalServerError()

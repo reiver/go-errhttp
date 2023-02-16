@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrFailedDependency error = FailedDependencyWrap(errors.New("Failed Dependency"))
+
 type FailedDependency interface {
 	ClientError
 	FailedDependency()

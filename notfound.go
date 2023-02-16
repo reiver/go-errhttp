@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrNotFound error = NotFoundWrap(errors.New("Not Found"))
+
 type NotFound  interface {
 	ClientError
 	NotFound ()

@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrPayloadTooLarge error = PayloadTooLargeWrap(errors.New("Payload Too Large"))
+
 type PayloadTooLarge interface {
 	ClientError
 	PayloadTooLarge()

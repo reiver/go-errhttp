@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrBadGateway error = BadGatewayWrap(errors.New("Bad Gateway"))
+
 type BadGateway interface {
 	ServerError
 	BadGateway()

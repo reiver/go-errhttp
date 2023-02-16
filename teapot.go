@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrTeapot error = TeapotWrap(errors.New("I'm a teapot"))
+
 type Teapot interface {
 	ClientError
 	Teapot()

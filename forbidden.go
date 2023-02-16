@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrForbidden error = ForbiddenWrap(errors.New("Forbidden"))
+
 type Forbidden interface {
 	ClientError
 	Forbidden()

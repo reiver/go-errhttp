@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrRequestHeaderFieldsTooLarge error = RequestHeaderFieldsTooLargeWrap(errors.New("RequestHeaderFieldsTooLarge"))
+
 type RequestHeaderFieldsTooLarge interface {
 	error
 	Err() error

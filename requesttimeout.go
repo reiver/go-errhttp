@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrRequestTimeout error = RequestTimeoutWrap(errors.New("Request Timeout"))
+
 type RequestTimeout interface {
 	error
 	Err() error

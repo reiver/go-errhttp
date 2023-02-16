@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrUnauthorized error = UnauthorizedWrap(errors.New("Unauthorized"))
+
 type Unauthorized interface {
 	ClientError
 	Unauthorized()

@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrHTTPVersionNotSupported error = HTTPVersionNotSupportedWrap(errors.New("HTTP Version Not Supported"))
+
 type HTTPVersionNotSupported interface {
 	ServerError
 	HTTPVersionNotSupported()

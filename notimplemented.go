@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrNotImplemented error = NotImplementedWrap(errors.New("Not Implemented"))
+
 type NotImplemented interface {
 	ServerError
 	NotImplemented()

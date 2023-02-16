@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrLengthRequired error = LengthRequiredWrap(errors.New("Length Required"))
+
 type LengthRequired interface {
 	ClientError
 	LengthRequired()

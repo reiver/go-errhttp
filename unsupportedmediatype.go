@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrUnsupportedMediaType error = UnsupportedMediaTypeWrap(errors.New("Unsupported Media Type"))
+
 type UnsupportedMediaType interface {
 	ClientError
 	UnsupportedMediaType()

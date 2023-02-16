@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrGone error = GoneWrap(errors.New("Gone"))
+
 type Gone interface {
 	ClientError()
 	Gone()

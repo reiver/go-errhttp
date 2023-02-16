@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrPreconditionRequired error = PreconditionRequiredWrap(errors.New("Precondition Required"))
+
 type PreconditionRequired interface {
 	ClientError
 	PreconditionRequired()

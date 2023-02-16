@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrUnprocessableEntity error = UnprocessableEntityWrap(errors.New("Unprocessable Entity"))
+
 type UnprocessableEntity interface {
 	ClientError
 	UnprocessableEntity()

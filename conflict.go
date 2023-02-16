@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrConflict = ConflictWrap(errors.New("Conflict"))
+
 type Conflict interface {
 	ClientError
 	Conflict()

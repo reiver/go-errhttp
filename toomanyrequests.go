@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrTooManyRequests error = TooManyRequestsWrap(errors.New("Too Many Requests"))
+
 type TooManyRequests interface {
 	ClientError
 	TooManyRequests()

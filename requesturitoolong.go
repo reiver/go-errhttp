@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrRequestURITooLong error = RequestURITooLongWrap(errors.New("Request URI Too Long"))
+
 type RequestURITooLong interface {
 	error
 	Err() error

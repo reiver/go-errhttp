@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrRequestEntityTooLarge error = RequestEntityTooLargeWrap(errors.New("Request Entity Too Large"))
+
 type RequestEntityTooLarge interface {
 	ClientError
 	RequestEntityTooLarge()

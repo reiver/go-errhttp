@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrNetworkAuthenticationRequired error = NetworkAuthenticationRequiredWrap(errors.New("Network Authentication Required"))
+
 type NetworkAuthenticationRequired interface {
 	ServerError
 	NetworkAuthenticationRequired()

@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrServiceUnavailable error = ServiceUnavailableWrap(errors.New("Service Unavailable"))
+
 type ServiceUnavailable interface {
 	ServerError
 	ServiceUnavailable()

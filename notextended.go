@@ -1,5 +1,11 @@
 package errhttp
 
+import (
+	"errors"
+)
+
+var ErrNotExtended error = NotExtendedWrap(errors.New("Not Extended"))
+
 type NotExtended interface {
 	ServerError
 	NotExtended()
