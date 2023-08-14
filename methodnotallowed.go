@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error            = internalMethodNotAllowed{}
+var _ ClientError      = internalMethodNotAllowed{}
 var _ MethodNotAllowed = internalMethodNotAllowed{}
 
 var ErrMethodNotAllowed error = MethodNotAllowedWrap(nil)

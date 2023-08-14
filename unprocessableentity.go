@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error               = internalUnprocessableEntity{}
+var _ ClientError         = internalUnprocessableEntity{}
 var _ UnprocessableEntity = internalUnprocessableEntity{}
 
 var ErrUnprocessableEntity error = UnprocessableEntityWrap(nil)

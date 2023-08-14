@@ -1,7 +1,8 @@
 package errhttp
 
-var _ Error  = internalLocked{}
-var _ Locked = internalLocked{}
+var _ Error        = internalLocked{}
+var _ ClientError  = internalLocked{}
+var _ Locked       = internalLocked{}
 
 var ErrLocked error = LockedWrap(nil)
 

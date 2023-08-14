@@ -1,7 +1,8 @@
 package errhttp
 
-var _ Error  = internalTeapot{}
-var _ Teapot = internalTeapot{}
+var _ Error       = internalTeapot{}
+var _ ClientError = internalTeapot{}
+var _ Teapot      = internalTeapot{}
 
 var ErrTeapot error = TeapotWrap(nil)
 

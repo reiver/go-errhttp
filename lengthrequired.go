@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error          = internalLengthRequired{}
+var _ ClientError    = internalLengthRequired{}
 var _ LengthRequired = internalLengthRequired{}
 
 var ErrLengthRequired error = LengthRequiredWrap(nil)

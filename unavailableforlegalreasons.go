@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error                      = internalUnavailableForLegalReasons{}
+var _ ClientError                = internalUnavailableForLegalReasons{}
 var _ UnavailableForLegalReasons = internalUnavailableForLegalReasons{}
 
 var ErrUnavailableForLegalReasons error = UnavailableForLegalReasonsWrap(nil)

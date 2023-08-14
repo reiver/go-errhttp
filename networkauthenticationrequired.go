@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error                         = internalNetworkAuthenticationRequired{}
+var _ ServerError                   = internalNetworkAuthenticationRequired{}
 var _ NetworkAuthenticationRequired = internalNetworkAuthenticationRequired{}
 
 var ErrNetworkAuthenticationRequired error = NetworkAuthenticationRequiredWrap(nil)

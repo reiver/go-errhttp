@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error                = internalUnsupportedMediaType{}
+var _ ClientError          = internalUnsupportedMediaType{}
 var _ UnsupportedMediaType = internalUnsupportedMediaType{}
 
 var ErrUnsupportedMediaType error = UnsupportedMediaTypeWrap(nil)

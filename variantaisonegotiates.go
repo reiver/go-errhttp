@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error                 = internalVariantAlsoNegotiates{}
+var _ ServerError           = internalVariantAlsoNegotiates{}
 var _ VariantAlsoNegotiates = internalVariantAlsoNegotiates{}
 
 var ErrVariantAlsoNegotiates error = VariantAlsoNegotiatesWrap(nil)

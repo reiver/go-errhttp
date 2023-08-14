@@ -1,7 +1,8 @@
 package errhttp
 
-var _ Error    = internalNotFound{}
-var _ NotFound = internalNotFound{}
+var _ Error       = internalNotFound{}
+var _ ClientError = internalNotFound{}
+var _ NotFound    = internalNotFound{}
 
 var ErrNotFound error = NotFoundWrap(nil)
 

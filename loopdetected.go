@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error        = internalLoopDetected{}
+var _ ServerError  = internalLoopDetected{}
 var _ LoopDetected = internalLoopDetected{}
 
 var ErrLoopDetected error = LoopDetectedWrap(nil)

@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error           = internalUpgradeRequired{}
+var _ ClientError     = internalUpgradeRequired{}
 var _ UpgradeRequired = internalUpgradeRequired{}
 
 var ErrUpgradeRequired error = UpgradeRequiredWrap(nil)

@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error               = internalInsufficientStorage{}
+var _ ServerError         = internalInsufficientStorage{}
 var _ InsufficientStorage = internalInsufficientStorage{}
 
 var ErrInsufficientStorage error = InsufficientStorageWrap(nil)

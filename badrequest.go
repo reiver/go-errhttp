@@ -1,7 +1,8 @@
 package errhttp
 
-var _ Error      = internalBadRequest{}
-var _ BadRequest = internalBadRequest{}
+var _ Error       = internalBadRequest{}
+var _ ClientError = internalBadRequest{}
+var _ BadRequest  = internalBadRequest{}
 
 var ErrBadRequest = BadRequestWrap(nil)
 

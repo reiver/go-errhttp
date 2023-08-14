@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error             = internalRequestURITooLong{}
+var _ ClientError       = internalRequestURITooLong{}
 var _ RequestURITooLong = internalRequestURITooLong{}
 
 var ErrRequestURITooLong error = RequestURITooLongWrap(nil)

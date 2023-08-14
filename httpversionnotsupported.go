@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error                   = internalHTTPVersionNotSupported{}
+var _ ServerError             = internalHTTPVersionNotSupported{}
 var _ HTTPVersionNotSupported = internalHTTPVersionNotSupported{}
 
 var ErrHTTPVersionNotSupported error = HTTPVersionNotSupportedWrap(nil)

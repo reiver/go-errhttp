@@ -1,7 +1,8 @@
 package errhttp
 
-var _ Error      = internalBadGateway{}
-var _ BadGateway = internalBadGateway{}
+var _ Error       = internalBadGateway{}
+var _ ServerError = internalBadGateway{}
+var _ BadGateway  = internalBadGateway{}
 
 var ErrBadGateway error = BadGatewayWrap(nil)
 

@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error                       = internalRequestHeaderFieldsTooLarge{}
+var _ ClientError                 = internalRequestHeaderFieldsTooLarge{}
 var _ RequestHeaderFieldsTooLarge = internalRequestHeaderFieldsTooLarge{}
 
 var ErrRequestHeaderFieldsTooLarge error = RequestHeaderFieldsTooLargeWrap(nil)

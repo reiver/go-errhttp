@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error           = internalTooManyRequests{}
+var _ ClientError     = internalTooManyRequests{}
 var _ TooManyRequests = internalTooManyRequests{}
 
 var ErrTooManyRequests error = TooManyRequestsWrap(nil)

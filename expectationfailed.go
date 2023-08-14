@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error             = internalExpectationFailed{}
+var _ ClientError       = internalExpectationFailed{}
 var _ ExpectationFailed = internalExpectationFailed{}
 
 var ErrExpectationFailed error = ExpectationFailedWrap(nil)

@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error            = internalFailedDependency{}
+var _ ClientError      = internalFailedDependency{}
 var _ FailedDependency = internalFailedDependency{}
 
 var ErrFailedDependency error = FailedDependencyWrap(nil)

@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error         = internalNotAcceptable{}
+var _ ClientError   = internalNotAcceptable{}
 var _ NotAcceptable = internalNotAcceptable{}
 
 var ErrNotAcceptable error = NotAcceptableWrap(nil)

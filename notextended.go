@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error       = internalNotExtended{}
+var _ ServerError = internalNotExtended{}
 var _ NotExtended = internalNotExtended{}
 
 var ErrNotExtended error = NotExtendedWrap(nil)

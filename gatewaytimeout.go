@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error          = internalGatewayTimeout{}
+var _ ServerError    = internalGatewayTimeout{}
 var _ GatewayTimeout = internalGatewayTimeout{}
 
 var ErrGatewayTimeout error = GatewayTimeoutWrap(nil)

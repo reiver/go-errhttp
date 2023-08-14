@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error                 = internalRequestEntityTooLarge{}
+var _ ClientError           = internalRequestEntityTooLarge{}
 var _ RequestEntityTooLarge = internalRequestEntityTooLarge{}
 
 var ErrRequestEntityTooLarge error = RequestEntityTooLargeWrap(nil)

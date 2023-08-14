@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error          = internalNotImplemented{}
+var _ ServerError    = internalNotImplemented{}
 var _ NotImplemented = internalNotImplemented{}
 
 var ErrNotImplemented error = NotImplementedWrap(nil)

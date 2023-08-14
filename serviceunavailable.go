@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error              = internalServiceUnavailable{}
+var _ ServerError        = internalServiceUnavailable{}
 var _ ServiceUnavailable = internalServiceUnavailable{}
 
 var ErrServiceUnavailable error = ServiceUnavailableWrap(nil)

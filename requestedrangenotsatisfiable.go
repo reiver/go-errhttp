@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error                        = internalRequestedRangeNotSatisfiable{}
+var _ ClientError                  = internalRequestedRangeNotSatisfiable{}
 var _ RequestedRangeNotSatisfiable = internalRequestedRangeNotSatisfiable{}
 
 var ErrRequestedRangeNotSatisfiable error = RequestedRangeNotSatisfiableWrap(nil)

@@ -1,7 +1,8 @@
 package errhttp
 
-var _ Error     = internalForbidden{}
-var _ Forbidden = internalForbidden{}
+var _ Error       = internalForbidden{}
+var _ ClientError = internalForbidden{}
+var _ Forbidden   = internalForbidden{}
 
 var ErrForbidden error = ForbiddenWrap(nil)
 

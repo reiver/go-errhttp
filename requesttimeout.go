@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error          = internalRequestTimeout{}
+var _ ClientError    = internalRequestTimeout{}
 var _ RequestTimeout = internalRequestTimeout{}
 
 var ErrRequestTimeout error = RequestTimeoutWrap(nil)

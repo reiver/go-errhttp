@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error               = internalInternalServerError{}
+var _ ServerError         = internalInternalServerError{}
 var _ InternalServerError = internalInternalServerError{}
 
 var ErrInternalServerError error = InternalServerErrorWrap(nil)

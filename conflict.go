@@ -1,7 +1,8 @@
 package errhttp
 
-var _ Error    = internalConflict{}
-var _ Conflict = internalConflict{}
+var _ Error       = internalConflict{}
+var _ ClientError = internalConflict{}
+var _ Conflict    = internalConflict{}
 
 var ErrConflict = ConflictWrap(nil)
 

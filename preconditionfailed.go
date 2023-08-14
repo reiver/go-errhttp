@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error              = internalPreconditionFailed{}
+var _ ClientError        = internalPreconditionFailed{}
 var _ PreconditionFailed = internalPreconditionFailed{}
 
 var ErrPreconditionFailed error = PreconditionFailedWrap(nil)

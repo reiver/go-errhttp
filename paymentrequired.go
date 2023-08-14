@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error           = internalPaymentRequired{}
+var _ ClientError     = internalPaymentRequired{}
 var _ PaymentRequired = internalPaymentRequired{}
 
 var ErrPaymentRequired error = PaymentRequiredWrap(nil)

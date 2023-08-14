@@ -1,7 +1,8 @@
 package errhttp
 
-var _ Error = internalGone{}
-var _ Gone  = internalGone{}
+var _ Error       = internalGone{}
+var _ ClientError = internalGone{}
+var _ Gone        = internalGone{}
 
 var ErrGone error = GoneWrap(nil)
 

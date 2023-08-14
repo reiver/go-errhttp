@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error             = internalProxyAuthRequired{}
+var _ ClientError       = internalProxyAuthRequired{}
 var _ ProxyAuthRequired = internalProxyAuthRequired{}
 
 var ErrProxyAuthRequired error = ProxyAuthRequiredWrap(nil)

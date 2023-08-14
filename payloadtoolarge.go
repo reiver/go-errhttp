@@ -1,6 +1,7 @@
 package errhttp
 
 var _ Error           = internalPayloadTooLarge{}
+var _ ClientError     = internalPayloadTooLarge{}
 var _ PayloadTooLarge = internalPayloadTooLarge{}
 
 var ErrPayloadTooLarge error = PayloadTooLargeWrap(nil)
