@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error                      = internalUnavailableForLegalReasons{}
 var _ ClientError                = internalUnavailableForLegalReasons{}
 var _ UnavailableForLegalReasons = internalUnavailableForLegalReasons{}
@@ -25,8 +29,8 @@ func (receiver internalUnavailableForLegalReasons) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalUnavailableForLegalReasons) ErrHTTP() {
-	// Nothing here.
+func (internalUnavailableForLegalReasons) ErrHTTP() int {
+	return http.StatusUnavailableForLegalReasons
 }
 
 func (internalUnavailableForLegalReasons) ClientError() {

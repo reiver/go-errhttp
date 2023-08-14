@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error                = internalUnsupportedMediaType{}
 var _ ClientError          = internalUnsupportedMediaType{}
 var _ UnsupportedMediaType = internalUnsupportedMediaType{}
@@ -25,8 +29,8 @@ func (receiver internalUnsupportedMediaType) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalUnsupportedMediaType) ErrHTTP() {
-	// Nothing here.
+func (internalUnsupportedMediaType) ErrHTTP() int {
+	return http.StatusUnsupportedMediaType
 }
 
 func (internalUnsupportedMediaType) ClientError() {

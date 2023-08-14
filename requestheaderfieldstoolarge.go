@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error                       = internalRequestHeaderFieldsTooLarge{}
 var _ ClientError                 = internalRequestHeaderFieldsTooLarge{}
 var _ RequestHeaderFieldsTooLarge = internalRequestHeaderFieldsTooLarge{}
@@ -25,8 +29,8 @@ func (receiver internalRequestHeaderFieldsTooLarge) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalRequestHeaderFieldsTooLarge) ErrHTTP() {
-	// Nothing here.
+func (internalRequestHeaderFieldsTooLarge) ErrHTTP() int {
+	return http.StatusRequestHeaderFieldsTooLarge
 }
 
 func (internalRequestHeaderFieldsTooLarge) ClientError() {

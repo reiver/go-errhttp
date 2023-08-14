@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error       = internalBadGateway{}
 var _ ServerError = internalBadGateway{}
 var _ BadGateway  = internalBadGateway{}
@@ -27,8 +31,8 @@ func (receiver internalBadGateway) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalBadGateway) ErrHTTP() {
-	// Nothing here.
+func (internalBadGateway) ErrHTTP() int {
+	return http.StatusBadGateway
 }
 
 func (internalBadGateway) ServerError() {

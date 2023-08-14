@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error                = internalPreconditionRequired{}
 var _ ClientError          = internalPreconditionRequired{}
 var _ PreconditionRequired = internalPreconditionRequired{}
@@ -25,8 +29,8 @@ func (receiver internalPreconditionRequired) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalPreconditionRequired) ErrHTTP() {
-	// Nothing here.
+func (internalPreconditionRequired) ErrHTTP() int {
+	return http.StatusPreconditionRequired
 }
 
 func (internalPreconditionRequired) ClientError() {

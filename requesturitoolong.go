@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error             = internalRequestURITooLong{}
 var _ ClientError       = internalRequestURITooLong{}
 var _ RequestURITooLong = internalRequestURITooLong{}
@@ -25,8 +29,8 @@ func (receiver internalRequestURITooLong) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalRequestURITooLong) ErrHTTP() {
-	// Nothing here.
+func (internalRequestURITooLong) ErrHTTP() int {
+	return http.StatusRequestURITooLong
 }
 
 func (internalRequestURITooLong) ClientError() {

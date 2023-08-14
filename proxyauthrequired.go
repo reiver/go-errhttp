@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error             = internalProxyAuthRequired{}
 var _ ClientError       = internalProxyAuthRequired{}
 var _ ProxyAuthRequired = internalProxyAuthRequired{}
@@ -25,8 +29,8 @@ func (receiver internalProxyAuthRequired) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalProxyAuthRequired) ErrHTTP() {
-	// Nothing here.
+func (internalProxyAuthRequired) ErrHTTP() int {
+	return http.StatusProxyAuthRequired
 }
 
 func (internalProxyAuthRequired) ClientError() {

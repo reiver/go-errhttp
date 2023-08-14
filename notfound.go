@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error       = internalNotFound{}
 var _ ClientError = internalNotFound{}
 var _ NotFound    = internalNotFound{}
@@ -25,8 +29,8 @@ func (receiver internalNotFound ) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalNotFound ) ErrHTTP() {
-	// Nothing here.
+func (internalNotFound ) ErrHTTP() int {
+	return http.StatusNotFound
 }
 
 func (internalNotFound ) ClientError() {

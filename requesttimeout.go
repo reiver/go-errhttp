@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error          = internalRequestTimeout{}
 var _ ClientError    = internalRequestTimeout{}
 var _ RequestTimeout = internalRequestTimeout{}
@@ -25,8 +29,8 @@ func (receiver internalRequestTimeout) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalRequestTimeout) ErrHTTP() {
-	// Nothing here.
+func (internalRequestTimeout) ErrHTTP() int {
+	return http.StatusRequestTimeout
 }
 
 func (internalRequestTimeout) ClientError() {

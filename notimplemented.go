@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error          = internalNotImplemented{}
 var _ ServerError    = internalNotImplemented{}
 var _ NotImplemented = internalNotImplemented{}
@@ -27,8 +31,8 @@ func (receiver internalNotImplemented) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalNotImplemented) ErrHTTP() {
-	// Nothing here.
+func (internalNotImplemented) ErrHTTP() int {
+	return http.StatusNotImplemented
 }
 
 func (internalNotImplemented) ServerError() {

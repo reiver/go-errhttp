@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error       = internalTeapot{}
 var _ ClientError = internalTeapot{}
 var _ Teapot      = internalTeapot{}
@@ -25,8 +29,8 @@ func (receiver internalTeapot) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalTeapot) ErrHTTP() {
-	// Nothing here.
+func (internalTeapot) ErrHTTP() int {
+	return http.StatusTeapot
 }
 
 func (internalTeapot) ClientError() {

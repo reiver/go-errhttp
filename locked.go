@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error        = internalLocked{}
 var _ ClientError  = internalLocked{}
 var _ Locked       = internalLocked{}
@@ -25,8 +29,8 @@ func (receiver internalLocked) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalLocked) ErrHTTP() {
-	// Nothing here.
+func (internalLocked) ErrHTTP() int {
+	return http.StatusLocked
 }
 
 func (internalLocked) ClientError() {

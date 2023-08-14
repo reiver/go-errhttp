@@ -30,12 +30,12 @@ Here is an example of wrapping an error:
 		//@TODO
 	case errhttp.InternalServerError:
 		//@TODO
-	
+		
 	case errhttp.ClientError:
 		//@TODO
 	case errhttp.ServerError:
 		//@TODO
-	
+		
 	default:
 		//@TODO
 	}
@@ -59,12 +59,39 @@ Here is an example of using one of the package global variable errors:
 		//@TODO
 	case errhttp.InternalServerError:
 		//@TODO
-	
+		
 	case errhttp.ClientError:
 		//@TODO
 	case errhttp.ServerError:
 		//@TODO
+		
+	default:
+		//@TODO
+	}
+```
+
+Here is another example, where it used the `.ErrHTTP()` method to get the HTTP response status code:
+
+```go
+	import "sourcecode.social/reiver/go-errhttp"
 	
+	// ...
+	
+	return errhttp.ErrBadRequest
+	
+	// ...
+	
+	switch casted := err.(type) {
+	case errhttp.ClientError:
+		statuscode := casted.ErrHTTP()
+		
+		http.Error(responsewriter, http.StatusText(statuscode), statuscode)
+		return
+	case errhttp.ServerError:
+		statuscode := casted.ErrHTTP()
+
+		http.Error(responsewriter, http.StatusText(statuscode), statuscode)
+		return
 	default:
 		//@TODO
 	}

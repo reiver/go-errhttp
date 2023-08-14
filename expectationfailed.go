@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error             = internalExpectationFailed{}
 var _ ClientError       = internalExpectationFailed{}
 var _ ExpectationFailed = internalExpectationFailed{}
@@ -25,8 +29,8 @@ func (receiver internalExpectationFailed) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalExpectationFailed) ErrHTTP() {
-	// Nothing here.
+func (internalExpectationFailed) ErrHTTP() int {
+	return http.StatusExpectationFailed
 }
 
 func (internalExpectationFailed) ClientError() {

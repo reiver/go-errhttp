@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error       = internalNotExtended{}
 var _ ServerError = internalNotExtended{}
 var _ NotExtended = internalNotExtended{}
@@ -27,8 +31,8 @@ func (receiver internalNotExtended) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalNotExtended) ErrHTTP() {
-	// Nothing here.
+func (internalNotExtended) ErrHTTP() int {
+	return http.StatusNotExtended
 }
 
 func (internalNotExtended) ServerError() {

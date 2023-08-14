@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error           = internalUpgradeRequired{}
 var _ ClientError     = internalUpgradeRequired{}
 var _ UpgradeRequired = internalUpgradeRequired{}
@@ -25,8 +29,8 @@ func (receiver internalUpgradeRequired) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalUpgradeRequired) ErrHTTP() {
-	// Nothing here.
+func (internalUpgradeRequired) ErrHTTP() int {
+	return http.StatusUpgradeRequired
 }
 
 func (internalUpgradeRequired) ClientError() {

@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error          = internalLengthRequired{}
 var _ ClientError    = internalLengthRequired{}
 var _ LengthRequired = internalLengthRequired{}
@@ -25,8 +29,8 @@ func (receiver internalLengthRequired) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalLengthRequired) ErrHTTP() {
-	// Nothing here.
+func (internalLengthRequired) ErrHTTP() int {
+	return http.StatusLengthRequired
 }
 
 func (internalLengthRequired) ClientError() {

@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error                   = internalHTTPVersionNotSupported{}
 var _ ServerError             = internalHTTPVersionNotSupported{}
 var _ HTTPVersionNotSupported = internalHTTPVersionNotSupported{}
@@ -27,8 +31,8 @@ func (receiver internalHTTPVersionNotSupported) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalHTTPVersionNotSupported) ErrHTTP() {
-	// Nothing here.
+func (internalHTTPVersionNotSupported) ErrHTTP() int {
+	return http.StatusHTTPVersionNotSupported
 }
 
 func (internalHTTPVersionNotSupported) ServerError() {

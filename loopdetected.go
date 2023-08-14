@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error        = internalLoopDetected{}
 var _ ServerError  = internalLoopDetected{}
 var _ LoopDetected = internalLoopDetected{}
@@ -27,8 +31,8 @@ func (receiver internalLoopDetected) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalLoopDetected) ErrHTTP() {
-	// Nothing here.
+func (internalLoopDetected) ErrHTTP() int {
+	return http.StatusLoopDetected
 }
 
 func (internalLoopDetected) ServerError() {

@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error                        = internalRequestedRangeNotSatisfiable{}
 var _ ClientError                  = internalRequestedRangeNotSatisfiable{}
 var _ RequestedRangeNotSatisfiable = internalRequestedRangeNotSatisfiable{}
@@ -25,8 +29,8 @@ func (receiver internalRequestedRangeNotSatisfiable) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalRequestedRangeNotSatisfiable) ErrHTTP() {
-	// Nothing here.
+func (internalRequestedRangeNotSatisfiable) ErrHTTP() int {
+	return http.StatusRequestedRangeNotSatisfiable
 }
 
 func (internalRequestedRangeNotSatisfiable) ClientError() {

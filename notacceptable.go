@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error         = internalNotAcceptable{}
 var _ ClientError   = internalNotAcceptable{}
 var _ NotAcceptable = internalNotAcceptable{}
@@ -25,8 +29,8 @@ func (receiver internalNotAcceptable) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalNotAcceptable) ErrHTTP() {
-	// Nothing here.
+func (internalNotAcceptable) ErrHTTP() int {
+	return http.StatusNotAcceptable
 }
 
 func (internalNotAcceptable) ClientError() {

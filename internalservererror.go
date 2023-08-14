@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error               = internalInternalServerError{}
 var _ ServerError         = internalInternalServerError{}
 var _ InternalServerError = internalInternalServerError{}
@@ -27,8 +31,8 @@ func (receiver internalInternalServerError) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalInternalServerError) ErrHTTP() {
-	// Nothing here.
+func (internalInternalServerError) ErrHTTP() int {
+	return http.StatusInternalServerError
 }
 
 func (internalInternalServerError) ServerError() {

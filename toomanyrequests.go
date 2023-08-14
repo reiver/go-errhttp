@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error           = internalTooManyRequests{}
 var _ ClientError     = internalTooManyRequests{}
 var _ TooManyRequests = internalTooManyRequests{}
@@ -25,8 +29,8 @@ func (receiver internalTooManyRequests) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalTooManyRequests) ErrHTTP() {
-	// Nothing here.
+func (internalTooManyRequests) ErrHTTP() int {
+	return http.StatusTooManyRequests
 }
 
 func (internalTooManyRequests) ClientError() {

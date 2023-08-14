@@ -2,6 +2,6 @@ package errhttp
 
 type Error interface {
 	error
-	ErrHTTP()
+	ErrHTTP() int
 	Unwrap() error
 }

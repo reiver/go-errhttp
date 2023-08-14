@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error        = internalUnauthorized{}
 var _ ClientError  = internalUnauthorized{}
 var _ Unauthorized = internalUnauthorized{}
@@ -25,8 +29,8 @@ func (receiver internalUnauthorized) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalUnauthorized) ErrHTTP() {
-	// Nothing here.
+func (internalUnauthorized) ErrHTTP() int {
+	return http.StatusUnauthorized
 }
 
 func (internalUnauthorized) ClientError() {

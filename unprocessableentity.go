@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error               = internalUnprocessableEntity{}
 var _ ClientError         = internalUnprocessableEntity{}
 var _ UnprocessableEntity = internalUnprocessableEntity{}
@@ -25,8 +29,8 @@ func (receiver internalUnprocessableEntity) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalUnprocessableEntity) ErrHTTP() {
-	// Nothing here.
+func (internalUnprocessableEntity) ErrHTTP() int {
+	return http.StatusUnprocessableEntity
 }
 
 func (internalUnprocessableEntity) ClientError() {

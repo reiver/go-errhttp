@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error              = internalServiceUnavailable{}
 var _ ServerError        = internalServiceUnavailable{}
 var _ ServiceUnavailable = internalServiceUnavailable{}
@@ -25,8 +29,8 @@ func (receiver internalServiceUnavailable) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalServiceUnavailable) ErrHTTP() {
-	// Nothing here.
+func (internalServiceUnavailable) ErrHTTP() int {
+	return http.StatusServiceUnavailable
 }
 
 func (internalServiceUnavailable) ServerError() {

@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error                 = internalRequestEntityTooLarge{}
 var _ ClientError           = internalRequestEntityTooLarge{}
 var _ RequestEntityTooLarge = internalRequestEntityTooLarge{}
@@ -25,8 +29,8 @@ func (receiver internalRequestEntityTooLarge) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalRequestEntityTooLarge) ErrHTTP() {
-	// Nothing here.
+func (internalRequestEntityTooLarge) ErrHTTP() int {
+	return http.StatusRequestEntityTooLarge
 }
 
 func (internalRequestEntityTooLarge) ClientError() {

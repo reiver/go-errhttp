@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error       = internalConflict{}
 var _ ClientError = internalConflict{}
 var _ Conflict    = internalConflict{}
@@ -25,8 +29,8 @@ func (receiver internalConflict) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalConflict) ErrHTTP() {
-	// Nothing here.
+func (internalConflict) ErrHTTP() int {
+	return http.StatusConflict
 }
 
 func (internalConflict) ClientError() {

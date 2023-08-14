@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error           = internalPaymentRequired{}
 var _ ClientError     = internalPaymentRequired{}
 var _ PaymentRequired = internalPaymentRequired{}
@@ -25,8 +29,8 @@ func (receiver internalPaymentRequired) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalPaymentRequired) ErrHTTP() {
-	// Nothing here.
+func (internalPaymentRequired) ErrHTTP() int {
+	return http.StatusPaymentRequired
 }
 
 

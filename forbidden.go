@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error       = internalForbidden{}
 var _ ClientError = internalForbidden{}
 var _ Forbidden   = internalForbidden{}
@@ -25,8 +29,8 @@ func (receiver internalForbidden) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalForbidden) ErrHTTP() {
-	// Nothing here.
+func (internalForbidden) ErrHTTP() int {
+	return http.StatusForbidden
 }
 
 func (internalForbidden) ClientError() {

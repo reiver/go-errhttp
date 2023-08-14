@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error               = internalInsufficientStorage{}
 var _ ServerError         = internalInsufficientStorage{}
 var _ InsufficientStorage = internalInsufficientStorage{}
@@ -27,8 +31,8 @@ func (receiver internalInsufficientStorage) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalInsufficientStorage) ErrHTTP() {
-	// Nothing here.
+func (internalInsufficientStorage) ErrHTTP() int {
+	return http.StatusInsufficientStorage
 }
 
 func (internalInsufficientStorage) ServerError() {

@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error            = internalMethodNotAllowed{}
 var _ ClientError      = internalMethodNotAllowed{}
 var _ MethodNotAllowed = internalMethodNotAllowed{}
@@ -25,8 +29,8 @@ func (receiver internalMethodNotAllowed) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalMethodNotAllowed) ErrHTTP() {
-	// Nothing here.
+func (internalMethodNotAllowed) ErrHTTP() int {
+	return http.StatusMethodNotAllowed
 }
 
 func (internalMethodNotAllowed) ClientError() {

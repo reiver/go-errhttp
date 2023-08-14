@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error                         = internalNetworkAuthenticationRequired{}
 var _ ServerError                   = internalNetworkAuthenticationRequired{}
 var _ NetworkAuthenticationRequired = internalNetworkAuthenticationRequired{}
@@ -27,8 +31,8 @@ func (receiver internalNetworkAuthenticationRequired) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalNetworkAuthenticationRequired) ErrHTTP() {
-	// Nothing here.
+func (internalNetworkAuthenticationRequired) ErrHTTP() int {
+	return http.StatusNetworkAuthenticationRequired
 }
 
 func (internalNetworkAuthenticationRequired) ServerError() {

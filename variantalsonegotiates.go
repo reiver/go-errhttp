@@ -1,5 +1,9 @@
 package errhttp
 
+import (
+	"net/http"
+)
+
 var _ Error                 = internalVariantAlsoNegotiates{}
 var _ ServerError           = internalVariantAlsoNegotiates{}
 var _ VariantAlsoNegotiates = internalVariantAlsoNegotiates{}
@@ -27,8 +31,8 @@ func (receiver internalVariantAlsoNegotiates) Error() string {
 	return receiver.err.Error()
 }
 
-func (internalVariantAlsoNegotiates) ErrHTTP() {
-	// Nothing here.
+func (internalVariantAlsoNegotiates) ErrHTTP() int {
+	return http.StatusVariantAlsoNegotiates
 }
 
 func (internalVariantAlsoNegotiates) ServerError() {
