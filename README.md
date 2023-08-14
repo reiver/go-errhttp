@@ -2,6 +2,11 @@
 
 Package **errhttp** provides errors and types that make dealing with HTTP response errors easier, for the Go programming language.
 
+## Documention
+
+Online documentation, which includes examples, can be found at: http://godoc.org/sourcecode.social/reiver/go-errhttp
+
+[![GoDoc](https://godoc.org/sourcecode.social/reiver/go-errhttp?status.svg)](https://godoc.org/sourcecode.social/reiver/go-errhttp)
 
 ## Example
 
@@ -64,9 +69,3 @@ Here is an example of using one of the package global variable errors:
 		//@TODO
 	}
 ```
-
-## Documention
-
-Online documentation, which includes examples, can be found at: http://godoc.org/sourcecode.social/reiver/go-errhttp
-
-[![GoDoc](https://godoc.org/sourcecode.social/reiver/go-errhttp?status.svg)](https://godoc.org/sourcecode.social/reiver/go-errhttp)
