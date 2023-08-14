@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error           = internalPaymentRequired{}
+var _ PaymentRequired = internalPaymentRequired{}
+
 var ErrPaymentRequired error = PaymentRequiredWrap(errors.New("Payment Required"))
 
 type PaymentRequired interface {
@@ -23,10 +26,6 @@ func PaymentRequiredWrap(err error) error {
 
 func (receiver internalPaymentRequired) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalPaymentRequired) Err() error {
-	return receiver.err
 }
 
 func (internalPaymentRequired) ErrHTTP() {

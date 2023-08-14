@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error                = internalPreconditionRequired{}
+var _ PreconditionRequired = internalPreconditionRequired{}
+
 var ErrPreconditionRequired error = PreconditionRequiredWrap(errors.New("Precondition Required"))
 
 type PreconditionRequired interface {
@@ -23,10 +26,6 @@ func PreconditionRequiredWrap(err error) error {
 
 func (receiver internalPreconditionRequired) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalPreconditionRequired) Err() error {
-	return receiver.err
 }
 
 func (internalPreconditionRequired) ErrHTTP() {

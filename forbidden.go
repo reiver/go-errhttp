@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error     = internalForbidden{}
+var _ Forbidden = internalForbidden{}
+
 var ErrForbidden error = ForbiddenWrap(errors.New("Forbidden"))
 
 type Forbidden interface {
@@ -23,10 +26,6 @@ func ForbiddenWrap(err error) error {
 
 func (receiver internalForbidden) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalForbidden) Err() error {
-	return receiver.err
 }
 
 func (internalForbidden) ErrHTTP() {

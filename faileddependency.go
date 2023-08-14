@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error            = internalFailedDependency{}
+var _ FailedDependency = internalFailedDependency{}
+
 var ErrFailedDependency error = FailedDependencyWrap(errors.New("Failed Dependency"))
 
 type FailedDependency interface {
@@ -23,10 +26,6 @@ func FailedDependencyWrap(err error) error {
 
 func (receiver internalFailedDependency) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalFailedDependency) Err() error {
-	return receiver.err
 }
 
 func (internalFailedDependency) ErrHTTP() {

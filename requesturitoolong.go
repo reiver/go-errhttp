@@ -4,11 +4,13 @@ import (
 	"errors"
 )
 
+var _ Error             = internalRequestURITooLong{}
+var _ RequestURITooLong = internalRequestURITooLong{}
+
 var ErrRequestURITooLong error = RequestURITooLongWrap(errors.New("Request URI Too Long"))
 
 type RequestURITooLong interface {
-	error
-	Err() error
+	ClientError
 	RequestURITooLong()
 }
 
@@ -24,10 +26,6 @@ func RequestURITooLongWrap(err error) error {
 
 func (receiver internalRequestURITooLong) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalRequestURITooLong) Err() error {
-	return receiver.err
 }
 
 func (internalRequestURITooLong) ErrHTTP() {

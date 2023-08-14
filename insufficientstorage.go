@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error               = internalInsufficientStorage{}
+var _ InsufficientStorage = internalInsufficientStorage{}
+
 var ErrInsufficientStorage error = InsufficientStorageWrap(errors.New("Insufficient Storage"))
 
 type InsufficientStorage interface {
@@ -25,10 +28,6 @@ func InsufficientStorageWrap(err error) error {
 
 func (receiver internalInsufficientStorage) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalInsufficientStorage) Err() error {
-	return receiver.err
 }
 
 func (internalInsufficientStorage) ErrHTTP() {

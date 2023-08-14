@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error    = internalNotFound{}
+var _ NotFound = internalNotFound{}
+
 var ErrNotFound error = NotFoundWrap(errors.New("Not Found"))
 
 type NotFound  interface {
@@ -11,7 +14,7 @@ type NotFound  interface {
 	NotFound ()
 }
 
-type internalNotFound  struct {
+type internalNotFound struct {
 	err error
 }
 
@@ -23,10 +26,6 @@ func NotFoundWrap(err error) error {
 
 func (receiver internalNotFound ) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalNotFound ) Err() error {
-	return receiver.err
 }
 
 func (internalNotFound ) ErrHTTP() {

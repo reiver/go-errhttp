@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error                = internalUnsupportedMediaType{}
+var _ UnsupportedMediaType = internalUnsupportedMediaType{}
+
 var ErrUnsupportedMediaType error = UnsupportedMediaTypeWrap(errors.New("Unsupported Media Type"))
 
 type UnsupportedMediaType interface {
@@ -23,10 +26,6 @@ func UnsupportedMediaTypeWrap(err error) error {
 
 func (receiver internalUnsupportedMediaType) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalUnsupportedMediaType) Err() error {
-	return receiver.err
 }
 
 func (internalUnsupportedMediaType) ErrHTTP() {

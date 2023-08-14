@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error      = internalBadRequest{}
+var _ BadRequest = internalBadRequest{}
+
 var ErrBadRequest = BadRequestWrap(errors.New("Bad Request"))
 
 type BadRequest interface {
@@ -23,10 +26,6 @@ func BadRequestWrap(err error) error {
 
 func (receiver internalBadRequest) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalBadRequest) Err() error {
-	return receiver.err
 }
 
 func (internalBadRequest) ErrHTTP() {

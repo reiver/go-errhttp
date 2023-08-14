@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error               = internalUnprocessableEntity{}
+var _ UnprocessableEntity = internalUnprocessableEntity{}
+
 var ErrUnprocessableEntity error = UnprocessableEntityWrap(errors.New("Unprocessable Entity"))
 
 type UnprocessableEntity interface {
@@ -23,10 +26,6 @@ func UnprocessableEntityWrap(err error) error {
 
 func (receiver internalUnprocessableEntity) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalUnprocessableEntity) Err() error {
-	return receiver.err
 }
 
 func (internalUnprocessableEntity) ErrHTTP() {

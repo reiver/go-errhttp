@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error            = internalMethodNotAllowed{}
+var _ MethodNotAllowed = internalMethodNotAllowed{}
+
 var ErrMethodNotAllowed error = MethodNotAllowedWrap(errors.New("Method Not Allowed"))
 
 type MethodNotAllowed interface {
@@ -23,10 +26,6 @@ func MethodNotAllowedWrap(err error) error {
 
 func (receiver internalMethodNotAllowed) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalMethodNotAllowed) Err() error {
-	return receiver.err
 }
 
 func (internalMethodNotAllowed) ErrHTTP() {

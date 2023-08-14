@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error  = internalTeapot{}
+var _ Teapot = internalTeapot{}
+
 var ErrTeapot error = TeapotWrap(errors.New("I'm a teapot"))
 
 type Teapot interface {
@@ -23,10 +26,6 @@ func TeapotWrap(err error) error {
 
 func (receiver internalTeapot) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalTeapot) Err() error {
-	return receiver.err
 }
 
 func (internalTeapot) ErrHTTP() {

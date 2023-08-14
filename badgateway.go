@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error      = internalBadGateway{}
+var _ BadGateway = internalBadGateway{}
+
 var ErrBadGateway error = BadGatewayWrap(errors.New("Bad Gateway"))
 
 type BadGateway interface {
@@ -25,10 +28,6 @@ func BadGatewayWrap(err error) error {
 
 func (receiver internalBadGateway) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalBadGateway) Err() error {
-	return receiver.err
 }
 
 func (internalBadGateway) ErrHTTP() {

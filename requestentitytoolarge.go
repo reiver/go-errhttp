@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error                 = internalRequestEntityTooLarge{}
+var _ RequestEntityTooLarge = internalRequestEntityTooLarge{}
+
 var ErrRequestEntityTooLarge error = RequestEntityTooLargeWrap(errors.New("Request Entity Too Large"))
 
 type RequestEntityTooLarge interface {
@@ -23,10 +26,6 @@ func RequestEntityTooLargeWrap(err error) error {
 
 func (receiver internalRequestEntityTooLarge) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalRequestEntityTooLarge) Err() error {
-	return receiver.err
 }
 
 func (internalRequestEntityTooLarge) ErrHTTP() {

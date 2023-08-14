@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error          = internalGatewayTimeout{}
+var _ GatewayTimeout = internalGatewayTimeout{}
+
 var ErrGatewayTimeout error = GatewayTimeoutWrap(errors.New("Gateway Timeout"))
 
 type GatewayTimeout interface {
@@ -25,10 +28,6 @@ func GatewayTimeoutWrap(err error) error {
 
 func (receiver internalGatewayTimeout) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalGatewayTimeout) Err() error {
-	return receiver.err
 }
 
 func (internalGatewayTimeout) ErrHTTP() {

@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error       = internalNotExtended{}
+var _ NotExtended = internalNotExtended{}
+
 var ErrNotExtended error = NotExtendedWrap(errors.New("Not Extended"))
 
 type NotExtended interface {
@@ -25,10 +28,6 @@ func NotExtendedWrap(err error) error {
 
 func (receiver internalNotExtended) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalNotExtended) Err() error {
-	return receiver.err
 }
 
 func (internalNotExtended) ErrHTTP() {

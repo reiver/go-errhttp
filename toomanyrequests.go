@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error           = internalTooManyRequests{}
+var _ TooManyRequests = internalTooManyRequests{}
+
 var ErrTooManyRequests error = TooManyRequestsWrap(errors.New("Too Many Requests"))
 
 type TooManyRequests interface {
@@ -23,10 +26,6 @@ func TooManyRequestsWrap(err error) error {
 
 func (receiver internalTooManyRequests) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalTooManyRequests) Err() error {
-	return receiver.err
 }
 
 func (internalTooManyRequests) ErrHTTP() {

@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error          = internalLengthRequired{}
+var _ LengthRequired = internalLengthRequired{}
+
 var ErrLengthRequired error = LengthRequiredWrap(errors.New("Length Required"))
 
 type LengthRequired interface {
@@ -23,10 +26,6 @@ func LengthRequiredWrap(err error) error {
 
 func (receiver internalLengthRequired) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalLengthRequired) Err() error {
-	return receiver.err
 }
 
 func (internalLengthRequired) ErrHTTP() {

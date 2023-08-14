@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error = internalGone{}
+var _ Gone  = internalGone{}
+
 var ErrGone error = GoneWrap(errors.New("Gone"))
 
 type Gone interface {
@@ -23,10 +26,6 @@ func GoneWrap(err error) error {
 
 func (receiver internalGone) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalGone) Err() error {
-	return receiver.err
 }
 
 func (internalGone) ErrHTTP() {

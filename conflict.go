@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error    = internalConflict{}
+var _ Conflict = internalConflict{}
+
 var ErrConflict = ConflictWrap(errors.New("Conflict"))
 
 type Conflict interface {
@@ -23,10 +26,6 @@ func ConflictWrap(err error) error {
 
 func (receiver internalConflict) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalConflict) Err() error {
-	return receiver.err
 }
 
 func (internalConflict) ErrHTTP() {

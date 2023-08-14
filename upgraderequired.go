@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error           = internalUpgradeRequired{}
+var _ UpgradeRequired = internalUpgradeRequired{}
+
 var ErrUpgradeRequired error = UpgradeRequiredWrap(errors.New("Upgrade Required"))
 
 type UpgradeRequired interface {
@@ -23,10 +26,6 @@ func UpgradeRequiredWrap(err error) error {
 
 func (receiver internalUpgradeRequired) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalUpgradeRequired) Err() error {
-	return receiver.err
 }
 
 func (internalUpgradeRequired) ErrHTTP() {

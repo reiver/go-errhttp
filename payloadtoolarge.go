@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error           = internalPayloadTooLarge{}
+var _ PayloadTooLarge = internalPayloadTooLarge{}
+
 var ErrPayloadTooLarge error = PayloadTooLargeWrap(errors.New("Payload Too Large"))
 
 type PayloadTooLarge interface {
@@ -23,10 +26,6 @@ func PayloadTooLargeWrap(err error) error {
 
 func (receiver internalPayloadTooLarge) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalPayloadTooLarge) Err() error {
-	return receiver.err
 }
 
 func (internalPayloadTooLarge) ErrHTTP() {

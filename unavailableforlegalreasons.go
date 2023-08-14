@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error                      = internalUnavailableForLegalReasons{}
+var _ UnavailableForLegalReasons = internalUnavailableForLegalReasons{}
+
 var ErrUnavailableForLegalReasons error = UnavailableForLegalReasonsWrap(errors.New("Unavailable For Legal Reasons"))
 
 type UnavailableForLegalReasons interface {
@@ -23,10 +26,6 @@ func UnavailableForLegalReasonsWrap(err error) error {
 
 func (receiver internalUnavailableForLegalReasons) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalUnavailableForLegalReasons) Err() error {
-	return receiver.err
 }
 
 func (internalUnavailableForLegalReasons) ErrHTTP() {

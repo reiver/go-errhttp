@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error                 = internalVariantAlsoNegotiates{}
+var _ VariantAlsoNegotiates = internalVariantAlsoNegotiates{}
+
 var ErrVariantAlsoNegotiates error = VariantAlsoNegotiatesWrap(errors.New("Variant Also Negotiates"))
 
 type VariantAlsoNegotiates interface {
@@ -25,10 +28,6 @@ func VariantAlsoNegotiatesWrap(err error) error {
 
 func (receiver internalVariantAlsoNegotiates) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalVariantAlsoNegotiates) Err() error {
-	return receiver.err
 }
 
 func (internalVariantAlsoNegotiates) ErrHTTP() {

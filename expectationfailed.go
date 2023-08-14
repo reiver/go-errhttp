@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error             = internalExpectationFailed{}
+var _ ExpectationFailed = internalExpectationFailed{}
+
 var ErrExpectationFailed error = ExpectationFailedWrap(errors.New("Expectation Failed"))
 
 type ExpectationFailed interface {
@@ -23,10 +26,6 @@ func ExpectationFailedWrap(err error) error {
 
 func (receiver internalExpectationFailed) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalExpectationFailed) Err() error {
-	return receiver.err
 }
 
 func (internalExpectationFailed) ErrHTTP() {

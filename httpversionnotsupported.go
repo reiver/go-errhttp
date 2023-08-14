@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error                   = internalHTTPVersionNotSupported{}
+var _ HTTPVersionNotSupported = internalHTTPVersionNotSupported{}
+
 var ErrHTTPVersionNotSupported error = HTTPVersionNotSupportedWrap(errors.New("HTTP Version Not Supported"))
 
 type HTTPVersionNotSupported interface {
@@ -25,10 +28,6 @@ func HTTPVersionNotSupportedWrap(err error) error {
 
 func (receiver internalHTTPVersionNotSupported) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalHTTPVersionNotSupported) Err() error {
-	return receiver.err
 }
 
 func (internalHTTPVersionNotSupported) ErrHTTP() {

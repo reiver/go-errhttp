@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error                        = internalRequestedRangeNotSatisfiable{}
+var _ RequestedRangeNotSatisfiable = internalRequestedRangeNotSatisfiable{}
+
 var ErrRequestedRangeNotSatisfiable error = RequestedRangeNotSatisfiableWrap(errors.New("Requested Range Not Satisfiable"))
 
 type RequestedRangeNotSatisfiable interface {
@@ -23,10 +26,6 @@ func RequestedRangeNotSatisfiableWrap(err error) error {
 
 func (receiver internalRequestedRangeNotSatisfiable) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalRequestedRangeNotSatisfiable) Err() error {
-	return receiver.err
 }
 
 func (internalRequestedRangeNotSatisfiable) ErrHTTP() {

@@ -4,11 +4,13 @@ import (
 	"errors"
 )
 
+var _ Error          = internalRequestTimeout{}
+var _ RequestTimeout = internalRequestTimeout{}
+
 var ErrRequestTimeout error = RequestTimeoutWrap(errors.New("Request Timeout"))
 
 type RequestTimeout interface {
-	error
-	Err() error
+	ClientError
 	RequestTimeout()
 }
 
@@ -24,10 +26,6 @@ func RequestTimeoutWrap(err error) error {
 
 func (receiver internalRequestTimeout) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalRequestTimeout) Err() error {
-	return receiver.err
 }
 
 func (internalRequestTimeout) ErrHTTP() {

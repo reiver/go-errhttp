@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error         = internalNotAcceptable{}
+var _ NotAcceptable = internalNotAcceptable{}
+
 var ErrNotAcceptable error = NotAcceptableWrap(errors.New("Not Acceptable"))
 
 type NotAcceptable interface {
@@ -23,10 +26,6 @@ func NotAcceptableWrap(err error) error {
 
 func (receiver internalNotAcceptable) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalNotAcceptable) Err() error {
-	return receiver.err
 }
 
 func (internalNotAcceptable) ErrHTTP() {

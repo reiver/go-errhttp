@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error               = internalInternalServerError{}
+var _ InternalServerError = internalInternalServerError{}
+
 var ErrInternalServerError error = InternalServerErrorWrap(errors.New("Internal Server Error"))
 
 type InternalServerError interface {
@@ -25,10 +28,6 @@ func InternalServerErrorWrap(err error) error {
 
 func (receiver internalInternalServerError) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalInternalServerError) Err() error {
-	return receiver.err
 }
 
 func (internalInternalServerError) ErrHTTP() {

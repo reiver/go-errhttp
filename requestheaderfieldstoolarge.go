@@ -4,11 +4,13 @@ import (
 	"errors"
 )
 
+var _ Error                       = internalRequestHeaderFieldsTooLarge{}
+var _ RequestHeaderFieldsTooLarge = internalRequestHeaderFieldsTooLarge{}
+
 var ErrRequestHeaderFieldsTooLarge error = RequestHeaderFieldsTooLargeWrap(errors.New("RequestHeaderFieldsTooLarge"))
 
 type RequestHeaderFieldsTooLarge interface {
-	error
-	Err() error
+	ClientError
 	RequestHeaderFieldsTooLarge()
 }
 
@@ -24,10 +26,6 @@ func RequestHeaderFieldsTooLargeWrap(err error) error {
 
 func (receiver internalRequestHeaderFieldsTooLarge) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalRequestHeaderFieldsTooLarge) Err() error {
-	return receiver.err
 }
 
 func (internalRequestHeaderFieldsTooLarge) ErrHTTP() {

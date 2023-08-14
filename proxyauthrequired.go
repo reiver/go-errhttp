@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error             = internalProxyAuthRequired{}
+var _ ProxyAuthRequired = internalProxyAuthRequired{}
+
 var ErrProxyAuthRequired error = ProxyAuthRequiredWrap(errors.New("Proxy Auth Required"))
 
 type ProxyAuthRequired interface {
@@ -23,10 +26,6 @@ func ProxyAuthRequiredWrap(err error) error {
 
 func (receiver internalProxyAuthRequired) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalProxyAuthRequired) Err() error {
-	return receiver.err
 }
 
 func (internalProxyAuthRequired) ErrHTTP() {

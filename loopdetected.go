@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error        = internalLoopDetected{}
+var _ LoopDetected = internalLoopDetected{}
+
 var ErrLoopDetected error = LoopDetectedWrap(errors.New("Loop Detected"))
 
 type LoopDetected interface {
@@ -25,10 +28,6 @@ func LoopDetectedWrap(err error) error {
 
 func (receiver internalLoopDetected) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalLoopDetected) Err() error {
-	return receiver.err
 }
 
 func (internalLoopDetected) ErrHTTP() {

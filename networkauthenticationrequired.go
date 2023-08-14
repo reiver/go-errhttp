@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error                         = internalNetworkAuthenticationRequired{}
+var _ NetworkAuthenticationRequired = internalNetworkAuthenticationRequired{}
+
 var ErrNetworkAuthenticationRequired error = NetworkAuthenticationRequiredWrap(errors.New("Network Authentication Required"))
 
 type NetworkAuthenticationRequired interface {
@@ -25,10 +28,6 @@ func NetworkAuthenticationRequiredWrap(err error) error {
 
 func (receiver internalNetworkAuthenticationRequired) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalNetworkAuthenticationRequired) Err() error {
-	return receiver.err
 }
 
 func (internalNetworkAuthenticationRequired) ErrHTTP() {

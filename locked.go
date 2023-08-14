@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error  = internalLocked{}
+var _ Locked = internalLocked{}
+
 var ErrLocked error = LockedWrap(errors.New("Locked"))
 
 type Locked interface {
@@ -23,10 +26,6 @@ func LockedWrap(err error) error {
 
 func (receiver internalLocked) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalLocked) Err() error {
-	return receiver.err
 }
 
 func (internalLocked) ErrHTTP() {

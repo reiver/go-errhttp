@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error              = internalServiceUnavailable{}
+var _ ServiceUnavailable = internalServiceUnavailable{}
+
 var ErrServiceUnavailable error = ServiceUnavailableWrap(errors.New("Service Unavailable"))
 
 type ServiceUnavailable interface {
@@ -23,10 +26,6 @@ func ServiceUnavailableWrap(err error) error {
 
 func (receiver internalServiceUnavailable) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalServiceUnavailable) Err() error {
-	return receiver.err
 }
 
 func (internalServiceUnavailable) ErrHTTP() {

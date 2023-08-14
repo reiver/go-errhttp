@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error          = internalNotImplemented{}
+var _ NotImplemented = internalNotImplemented{}
+
 var ErrNotImplemented error = NotImplementedWrap(errors.New("Not Implemented"))
 
 type NotImplemented interface {
@@ -25,10 +28,6 @@ func NotImplementedWrap(err error) error {
 
 func (receiver internalNotImplemented) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalNotImplemented) Err() error {
-	return receiver.err
 }
 
 func (internalNotImplemented) ErrHTTP() {

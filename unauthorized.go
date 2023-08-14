@@ -4,6 +4,9 @@ import (
 	"errors"
 )
 
+var _ Error        = internalUnauthorized{}
+var _ Unauthorized = internalUnauthorized{}
+
 var ErrUnauthorized error = UnauthorizedWrap(errors.New("Unauthorized"))
 
 type Unauthorized interface {
@@ -23,10 +26,6 @@ func UnauthorizedWrap(err error) error {
 
 func (receiver internalUnauthorized) Error() string {
 	return receiver.err.Error()
-}
-
-func (receiver internalUnauthorized) Err() error {
-	return receiver.err
 }
 
 func (internalUnauthorized) ErrHTTP() {
