@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error                       = internalRequestHeaderFieldsTooLarge{}
 var _ RequestHeaderFieldsTooLarge = internalRequestHeaderFieldsTooLarge{}
 
-var ErrRequestHeaderFieldsTooLarge error = RequestHeaderFieldsTooLargeWrap(errors.New("RequestHeaderFieldsTooLarge"))
+var ErrRequestHeaderFieldsTooLarge error = RequestHeaderFieldsTooLargeWrap(nil)
 
 type RequestHeaderFieldsTooLarge interface {
 	ClientError

@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error        = internalLoopDetected{}
 var _ LoopDetected = internalLoopDetected{}
 
-var ErrLoopDetected error = LoopDetectedWrap(errors.New("Loop Detected"))
+var ErrLoopDetected error = LoopDetectedWrap(nil)
 
 type LoopDetected interface {
 	ServerError

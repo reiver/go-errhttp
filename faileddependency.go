@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error            = internalFailedDependency{}
 var _ FailedDependency = internalFailedDependency{}
 
-var ErrFailedDependency error = FailedDependencyWrap(errors.New("Failed Dependency"))
+var ErrFailedDependency error = FailedDependencyWrap(nil)
 
 type FailedDependency interface {
 	ClientError

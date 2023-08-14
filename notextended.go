@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error       = internalNotExtended{}
 var _ NotExtended = internalNotExtended{}
 
-var ErrNotExtended error = NotExtendedWrap(errors.New("Not Extended"))
+var ErrNotExtended error = NotExtendedWrap(nil)
 
 type NotExtended interface {
 	ServerError

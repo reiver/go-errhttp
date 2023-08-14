@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error    = internalConflict{}
 var _ Conflict = internalConflict{}
 
-var ErrConflict = ConflictWrap(errors.New("Conflict"))
+var ErrConflict = ConflictWrap(nil)
 
 type Conflict interface {
 	ClientError

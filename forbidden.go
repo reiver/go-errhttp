@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error     = internalForbidden{}
 var _ Forbidden = internalForbidden{}
 
-var ErrForbidden error = ForbiddenWrap(errors.New("Forbidden"))
+var ErrForbidden error = ForbiddenWrap(nil)
 
 type Forbidden interface {
 	ClientError

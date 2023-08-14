@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error                        = internalRequestedRangeNotSatisfiable{}
 var _ RequestedRangeNotSatisfiable = internalRequestedRangeNotSatisfiable{}
 
-var ErrRequestedRangeNotSatisfiable error = RequestedRangeNotSatisfiableWrap(errors.New("Requested Range Not Satisfiable"))
+var ErrRequestedRangeNotSatisfiable error = RequestedRangeNotSatisfiableWrap(nil)
 
 type RequestedRangeNotSatisfiable interface {
 	ClientError

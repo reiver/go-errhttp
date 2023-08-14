@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error      = internalBadRequest{}
 var _ BadRequest = internalBadRequest{}
 
-var ErrBadRequest = BadRequestWrap(errors.New("Bad Request"))
+var ErrBadRequest = BadRequestWrap(nil)
 
 type BadRequest interface {
 	ClientError

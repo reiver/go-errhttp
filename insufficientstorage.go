@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error               = internalInsufficientStorage{}
 var _ InsufficientStorage = internalInsufficientStorage{}
 
-var ErrInsufficientStorage error = InsufficientStorageWrap(errors.New("Insufficient Storage"))
+var ErrInsufficientStorage error = InsufficientStorageWrap(nil)
 
 type InsufficientStorage interface {
 	ServerError

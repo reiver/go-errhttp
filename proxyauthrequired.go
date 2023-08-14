@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error             = internalProxyAuthRequired{}
 var _ ProxyAuthRequired = internalProxyAuthRequired{}
 
-var ErrProxyAuthRequired error = ProxyAuthRequiredWrap(errors.New("Proxy Auth Required"))
+var ErrProxyAuthRequired error = ProxyAuthRequiredWrap(nil)
 
 type ProxyAuthRequired interface {
 	ClientError

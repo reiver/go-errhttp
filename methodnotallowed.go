@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error            = internalMethodNotAllowed{}
 var _ MethodNotAllowed = internalMethodNotAllowed{}
 
-var ErrMethodNotAllowed error = MethodNotAllowedWrap(errors.New("Method Not Allowed"))
+var ErrMethodNotAllowed error = MethodNotAllowedWrap(nil)
 
 type MethodNotAllowed interface {
 	ClientError

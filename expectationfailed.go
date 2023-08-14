@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error             = internalExpectationFailed{}
 var _ ExpectationFailed = internalExpectationFailed{}
 
-var ErrExpectationFailed error = ExpectationFailedWrap(errors.New("Expectation Failed"))
+var ErrExpectationFailed error = ExpectationFailedWrap(nil)
 
 type ExpectationFailed interface {
 	ClientError

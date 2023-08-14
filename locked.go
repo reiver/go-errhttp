@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error  = internalLocked{}
 var _ Locked = internalLocked{}
 
-var ErrLocked error = LockedWrap(errors.New("Locked"))
+var ErrLocked error = LockedWrap(nil)
 
 type Locked interface {
 	ClientError

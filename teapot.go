@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error  = internalTeapot{}
 var _ Teapot = internalTeapot{}
 
-var ErrTeapot error = TeapotWrap(errors.New("I'm a teapot"))
+var ErrTeapot error = TeapotWrap(nil)
 
 type Teapot interface {
 	ClientError

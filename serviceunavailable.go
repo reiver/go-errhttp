@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error              = internalServiceUnavailable{}
 var _ ServiceUnavailable = internalServiceUnavailable{}
 
-var ErrServiceUnavailable error = ServiceUnavailableWrap(errors.New("Service Unavailable"))
+var ErrServiceUnavailable error = ServiceUnavailableWrap(nil)
 
 type ServiceUnavailable interface {
 	ServerError

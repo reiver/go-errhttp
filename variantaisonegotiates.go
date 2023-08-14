@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error                 = internalVariantAlsoNegotiates{}
 var _ VariantAlsoNegotiates = internalVariantAlsoNegotiates{}
 
-var ErrVariantAlsoNegotiates error = VariantAlsoNegotiatesWrap(errors.New("Variant Also Negotiates"))
+var ErrVariantAlsoNegotiates error = VariantAlsoNegotiatesWrap(nil)
 
 type VariantAlsoNegotiates interface {
 	ServerError

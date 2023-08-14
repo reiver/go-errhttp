@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error                 = internalRequestEntityTooLarge{}
 var _ RequestEntityTooLarge = internalRequestEntityTooLarge{}
 
-var ErrRequestEntityTooLarge error = RequestEntityTooLargeWrap(errors.New("Request Entity Too Large"))
+var ErrRequestEntityTooLarge error = RequestEntityTooLargeWrap(nil)
 
 type RequestEntityTooLarge interface {
 	ClientError

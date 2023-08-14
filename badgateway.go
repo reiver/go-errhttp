@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error      = internalBadGateway{}
 var _ BadGateway = internalBadGateway{}
 
-var ErrBadGateway error = BadGatewayWrap(errors.New("Bad Gateway"))
+var ErrBadGateway error = BadGatewayWrap(nil)
 
 type BadGateway interface {
 	ServerError

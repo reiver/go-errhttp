@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error    = internalNotFound{}
 var _ NotFound = internalNotFound{}
 
-var ErrNotFound error = NotFoundWrap(errors.New("Not Found"))
+var ErrNotFound error = NotFoundWrap(nil)
 
 type NotFound  interface {
 	ClientError

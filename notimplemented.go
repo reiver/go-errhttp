@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error          = internalNotImplemented{}
 var _ NotImplemented = internalNotImplemented{}
 
-var ErrNotImplemented error = NotImplementedWrap(errors.New("Not Implemented"))
+var ErrNotImplemented error = NotImplementedWrap(nil)
 
 type NotImplemented interface {
 	ServerError

@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error               = internalUnprocessableEntity{}
 var _ UnprocessableEntity = internalUnprocessableEntity{}
 
-var ErrUnprocessableEntity error = UnprocessableEntityWrap(errors.New("Unprocessable Entity"))
+var ErrUnprocessableEntity error = UnprocessableEntityWrap(nil)
 
 type UnprocessableEntity interface {
 	ClientError

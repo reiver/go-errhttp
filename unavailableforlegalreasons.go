@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error                      = internalUnavailableForLegalReasons{}
 var _ UnavailableForLegalReasons = internalUnavailableForLegalReasons{}
 
-var ErrUnavailableForLegalReasons error = UnavailableForLegalReasonsWrap(errors.New("Unavailable For Legal Reasons"))
+var ErrUnavailableForLegalReasons error = UnavailableForLegalReasonsWrap(nil)
 
 type UnavailableForLegalReasons interface {
 	ClientError

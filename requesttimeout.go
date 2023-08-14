@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error          = internalRequestTimeout{}
 var _ RequestTimeout = internalRequestTimeout{}
 
-var ErrRequestTimeout error = RequestTimeoutWrap(errors.New("Request Timeout"))
+var ErrRequestTimeout error = RequestTimeoutWrap(nil)
 
 type RequestTimeout interface {
 	ClientError

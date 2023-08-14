@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error          = internalGatewayTimeout{}
 var _ GatewayTimeout = internalGatewayTimeout{}
 
-var ErrGatewayTimeout error = GatewayTimeoutWrap(errors.New("Gateway Timeout"))
+var ErrGatewayTimeout error = GatewayTimeoutWrap(nil)
 
 type GatewayTimeout interface {
 	ServerError

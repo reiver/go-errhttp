@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error              = internalPreconditionFailed{}
 var _ PreconditionFailed = internalPreconditionFailed{}
 
-var ErrPreconditionFailed error = PreconditionFailedWrap(errors.New("Precondition Failed"))
+var ErrPreconditionFailed error = PreconditionFailedWrap(nil)
 
 type PreconditionFailed interface {
 	ClientError

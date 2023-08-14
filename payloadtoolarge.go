@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error           = internalPayloadTooLarge{}
 var _ PayloadTooLarge = internalPayloadTooLarge{}
 
-var ErrPayloadTooLarge error = PayloadTooLargeWrap(errors.New("Payload Too Large"))
+var ErrPayloadTooLarge error = PayloadTooLargeWrap(nil)
 
 type PayloadTooLarge interface {
 	ClientError

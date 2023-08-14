@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error           = internalPaymentRequired{}
 var _ PaymentRequired = internalPaymentRequired{}
 
-var ErrPaymentRequired error = PaymentRequiredWrap(errors.New("Payment Required"))
+var ErrPaymentRequired error = PaymentRequiredWrap(nil)
 
 type PaymentRequired interface {
 	ClientError

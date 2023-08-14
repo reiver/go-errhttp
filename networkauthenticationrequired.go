@@ -1,13 +1,9 @@
 package errhttp
 
-import (
-	"errors"
-)
-
 var _ Error                         = internalNetworkAuthenticationRequired{}
 var _ NetworkAuthenticationRequired = internalNetworkAuthenticationRequired{}
 
-var ErrNetworkAuthenticationRequired error = NetworkAuthenticationRequiredWrap(errors.New("Network Authentication Required"))
+var ErrNetworkAuthenticationRequired error = NetworkAuthenticationRequiredWrap(nil)
 
 type NetworkAuthenticationRequired interface {
 	ServerError
