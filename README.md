@@ -1,11 +1,14 @@
 # go-errhttp
 
-Package **errhttp** provides types errors that make dealing with HTTP response errors easier, for the Go programming language.
+Package **errhttp** provides errors and types that make dealing with HTTP response errors easier, for the Go programming language.
 
 
 ## Example
+
+Here is an example of wrapping an error:
+
 ```go
-	import "github.com/reiver/go-errhttp"
+	import "sourcecode.social/reiver/go-errhttp"
 	
 	// ...
 	
@@ -33,8 +36,37 @@ Package **errhttp** provides types errors that make dealing with HTTP response e
 	}
 ```
 
+Here is an example of using one of the package global variable errors:
+
+```go
+	import "sourcecode.social/reiver/go-errhttp"
+	
+	// ...
+	
+	return errhttp.ErrBadRequest
+	
+	// ...
+	
+	switch err.(type) {
+	case errhttp.BadRequest:
+		//@TODO
+	case errhttp.NotFound:
+		//@TODO
+	case errhttp.InternalServerError:
+		//@TODO
+	
+	case errhttp.ClientError:
+		//@TODO
+	case errhttp.ServerError:
+		//@TODO
+	
+	default:
+		//@TODO
+	}
+```
+
 ## Documention
 
-Online documentation, which includes examples, can be found at: http://godoc.org/github.com/reiver/go-errhttp
+Online documentation, which includes examples, can be found at: http://godoc.org/sourcecode.social/reiver/go-errhttp
 
-[![GoDoc](https://godoc.org/github.com/reiver/go-errhttp?status.svg)](https://godoc.org/github.com/reiver/go-errhttp)
+[![GoDoc](https://godoc.org/sourcecode.social/reiver/go-errhttp?status.svg)](https://godoc.org/sourcecode.social/reiver/go-errhttp)
