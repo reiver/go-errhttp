@@ -25,19 +25,23 @@ func NotFoundWrap(err error) error {
 	}
 }
 
-func (receiver internalNotFound ) Error() string {
-	return receiver.err.Error()
+func (receiver internalNotFound) Error() string {
+	err := receiver.err
+	if nil == err {
+		return http.StatusText(receiver.ErrHTTP())
+	}
+	return err.Error()
 }
 
-func (internalNotFound ) ErrHTTP() int {
+func (internalNotFound) ErrHTTP() int {
 	return http.StatusNotFound
 }
 
-func (internalNotFound ) ClientError() {
+func (internalNotFound) ClientError() {
 	// Nothing here.
 }
 
-func (internalNotFound ) NotFound() {
+func (internalNotFound) NotFound() {
 	// Nothing here.
 }
 

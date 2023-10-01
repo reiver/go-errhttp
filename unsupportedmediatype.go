@@ -26,7 +26,11 @@ func UnsupportedMediaTypeWrap(err error) error {
 }
 
 func (receiver internalUnsupportedMediaType) Error() string {
-	return receiver.err.Error()
+	err := receiver.err
+	if nil == err {
+		return http.StatusText(receiver.ErrHTTP())
+	}
+	return err.Error()
 }
 
 func (internalUnsupportedMediaType) ErrHTTP() int {

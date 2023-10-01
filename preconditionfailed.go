@@ -26,7 +26,11 @@ func PreconditionFailedWrap(err error) error {
 }
 
 func (receiver internalPreconditionFailed) Error() string {
-	return receiver.err.Error()
+	err := receiver.err
+	if nil == err {
+		return http.StatusText(receiver.ErrHTTP())
+	}
+	return err.Error()
 }
 
 func (internalPreconditionFailed) ErrHTTP() int {

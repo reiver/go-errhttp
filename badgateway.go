@@ -15,8 +15,6 @@ type BadGateway interface {
 	BadGateway()
 }
 
-var _ BadGateway = internalBadGateway{}
-
 type internalBadGateway struct {
 	err error
 }
@@ -28,7 +26,11 @@ func BadGatewayWrap(err error) error {
 }
 
 func (receiver internalBadGateway) Error() string {
-	return receiver.err.Error()
+	err := receiver.err
+	if nil == err {
+		return http.StatusText(receiver.ErrHTTP())
+	}
+	return err.Error()
 }
 
 func (internalBadGateway) ErrHTTP() int {

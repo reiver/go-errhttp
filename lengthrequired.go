@@ -26,7 +26,11 @@ func LengthRequiredWrap(err error) error {
 }
 
 func (receiver internalLengthRequired) Error() string {
-	return receiver.err.Error()
+	err := receiver.err
+	if nil == err {
+		return http.StatusText(receiver.ErrHTTP())
+	}
+	return err.Error()
 }
 
 func (internalLengthRequired) ErrHTTP() int {

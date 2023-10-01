@@ -26,7 +26,11 @@ func RequestTimeoutWrap(err error) error {
 }
 
 func (receiver internalRequestTimeout) Error() string {
-	return receiver.err.Error()
+	err := receiver.err
+	if nil == err {
+		return http.StatusText(receiver.ErrHTTP())
+	}
+	return err.Error()
 }
 
 func (internalRequestTimeout) ErrHTTP() int {

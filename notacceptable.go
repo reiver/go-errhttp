@@ -26,6 +26,10 @@ func NotAcceptableWrap(err error) error {
 }
 
 func (receiver internalNotAcceptable) Error() string {
+	err := receiver.err
+	if nil == err {
+		return http.StatusText(receiver.ErrHTTP())
+	}
 	return receiver.err.Error()
 }
 

@@ -26,7 +26,11 @@ func GoneWrap(err error) error {
 }
 
 func (receiver internalGone) Error() string {
-	return receiver.err.Error()
+	err := receiver.err
+	if nil == err {
+		return http.StatusText(receiver.ErrHTTP())
+	}
+	return err.Error()
 }
 
 func (internalGone) ErrHTTP() int {

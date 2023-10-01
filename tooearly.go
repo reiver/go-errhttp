@@ -8,7 +8,7 @@ var _ Error       = internalTooEarly{}
 var _ ClientError = internalTooEarly{}
 var _ TooEarly    = internalTooEarly{}
 
-var ErrTooEarly = TooEarlyWrap(nil)
+var ErrTooEarly error = TooEarlyWrap(nil)
 
 type TooEarly interface {
 	ClientError
@@ -26,7 +26,11 @@ func TooEarlyWrap(err error) error {
 }
 
 func (receiver internalTooEarly) Error() string {
-	return receiver.err.Error()
+	err := receiver.err
+	if nil == err {
+		return http.StatusText(receiver.ErrHTTP())
+	}
+	return err.Error()
 }
 
 func (internalTooEarly) ErrHTTP() int {

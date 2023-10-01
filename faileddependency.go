@@ -26,7 +26,11 @@ func FailedDependencyWrap(err error) error {
 }
 
 func (receiver internalFailedDependency) Error() string {
-	return receiver.err.Error()
+	err := receiver.err
+	if nil == err {
+		return http.StatusText(receiver.ErrHTTP())
+	}
+	return err.Error()
 }
 
 func (internalFailedDependency) ErrHTTP() int {

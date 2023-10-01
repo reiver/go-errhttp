@@ -8,7 +8,7 @@ var _ Error       = internalConflict{}
 var _ ClientError = internalConflict{}
 var _ Conflict    = internalConflict{}
 
-var ErrConflict = ConflictWrap(nil)
+var ErrConflict error = ConflictWrap(nil)
 
 type Conflict interface {
 	ClientError
@@ -26,7 +26,11 @@ func ConflictWrap(err error) error {
 }
 
 func (receiver internalConflict) Error() string {
-	return receiver.err.Error()
+	err := receiver.err
+	if nil == err {
+		return http.StatusText(receiver.ErrHTTP())
+	}
+	return err.Error()
 }
 
 func (internalConflict) ErrHTTP() int {

@@ -8,7 +8,7 @@ var _ Error       = internalBadRequest{}
 var _ ClientError = internalBadRequest{}
 var _ BadRequest  = internalBadRequest{}
 
-var ErrBadRequest = BadRequestWrap(nil)
+var ErrBadRequest error = BadRequestWrap(nil)
 
 type BadRequest interface {
 	ClientError
@@ -26,7 +26,11 @@ func BadRequestWrap(err error) error {
 }
 
 func (receiver internalBadRequest) Error() string {
-	return receiver.err.Error()
+	err := receiver.err
+	if nil == err {
+		return http.StatusText(receiver.ErrHTTP())
+	}
+	return err.Error()
 }
 
 func (internalBadRequest) ErrHTTP() int {

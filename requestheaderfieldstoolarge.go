@@ -26,7 +26,11 @@ func RequestHeaderFieldsTooLargeWrap(err error) error {
 }
 
 func (receiver internalRequestHeaderFieldsTooLarge) Error() string {
-	return receiver.err.Error()
+	err := receiver.err
+	if nil == err {
+	return http.StatusText(receiver.ErrHTTP())
+	}
+	return err.Error()
 }
 
 func (internalRequestHeaderFieldsTooLarge) ErrHTTP() int {

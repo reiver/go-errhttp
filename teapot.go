@@ -26,7 +26,11 @@ func TeapotWrap(err error) error {
 }
 
 func (receiver internalTeapot) Error() string {
-	return receiver.err.Error()
+	err := receiver.err
+	if nil == err {
+		return http.StatusText(receiver.ErrHTTP())
+	}
+	return err.Error()
 }
 
 func (internalTeapot) ErrHTTP() int {
