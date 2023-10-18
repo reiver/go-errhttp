@@ -8,7 +8,9 @@ var _ Error             = internalExpectationFailed{}
 var _ ClientError       = internalExpectationFailed{}
 var _ ExpectationFailed = internalExpectationFailed{}
 
-var ErrExpectationFailed error = ExpectationFailedWrap(nil)
+var ClientErrorExpectationFailed ClientError = ExpectationFailedWrap(nil).(ExpectationFailed)
+var ErrHTTPExpectationFailed     Error       = ClientErrorExpectationFailed
+var ErrExpectationFailed         error       = ClientErrorExpectationFailed
 
 type ExpectationFailed interface {
 	ClientError

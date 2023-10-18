@@ -8,7 +8,9 @@ var _ Error               = internalInternalServerError{}
 var _ ServerError         = internalInternalServerError{}
 var _ InternalServerError = internalInternalServerError{}
 
-var ErrInternalServerError error = InternalServerErrorWrap(nil)
+var ServerErrorInternalServerError InternalServerError = InternalServerErrorWrap(nil).(InternalServerError)
+var ErrHTTPInternalServerError     Error               = ServerErrorInternalServerError
+var ErrInternalServerError         error               = ServerErrorInternalServerError
 
 type InternalServerError interface {
 	ServerError

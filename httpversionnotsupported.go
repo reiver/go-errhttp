@@ -8,7 +8,9 @@ var _ Error                   = internalHTTPVersionNotSupported{}
 var _ ServerError             = internalHTTPVersionNotSupported{}
 var _ HTTPVersionNotSupported = internalHTTPVersionNotSupported{}
 
-var ErrHTTPVersionNotSupported error = HTTPVersionNotSupportedWrap(nil)
+var ServerErrorHTTPVersionNotSupported ServerError = HTTPVersionNotSupportedWrap(nil).(HTTPVersionNotSupported)
+var ErrHTTPHTTPVersionNotSupported     Error       = ServerErrorHTTPVersionNotSupported
+var ErrHTTPVersionNotSupported         error       = ServerErrorHTTPVersionNotSupported
 
 type HTTPVersionNotSupported interface {
 	ServerError

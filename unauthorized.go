@@ -8,7 +8,9 @@ var _ Error        = internalUnauthorized{}
 var _ ClientError  = internalUnauthorized{}
 var _ Unauthorized = internalUnauthorized{}
 
-var ErrUnauthorized error = UnauthorizedWrap(nil)
+var ClientErrorUnauthorized ClientError = UnauthorizedWrap(nil).(Unauthorized)
+var ErrHTTPUnauthorized     Error       = ClientErrorUnauthorized
+var ErrUnauthorized         error       = ClientErrorUnauthorized
 
 type Unauthorized interface {
 	ClientError

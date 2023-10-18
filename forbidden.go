@@ -8,7 +8,9 @@ var _ Error       = internalForbidden{}
 var _ ClientError = internalForbidden{}
 var _ Forbidden   = internalForbidden{}
 
-var ErrForbidden error = ForbiddenWrap(nil)
+var ClientErrorForbidden ClientError = ForbiddenWrap(nil).(Forbidden)
+var ErrHTTPForbidden     Error       = ClientErrorForbidden
+var ErrForbidden         error       = ClientErrorForbidden
 
 type Forbidden interface {
 	ClientError

@@ -8,7 +8,9 @@ var _ Error              = internalMisdirectedRequest{}
 var _ ClientError        = internalMisdirectedRequest{}
 var _ MisdirectedRequest = internalMisdirectedRequest{}
 
-var ErrMisdirectedRequest error = MisdirectedRequestWrap(nil)
+var ClientErrorMisdirectedRequest ClientError = MisdirectedRequestWrap(nil).(MisdirectedRequest)
+var ErrHTTPMisdirectedRequest     Error       = ClientErrorMisdirectedRequest
+var ErrMisdirectedRequest         error       = ClientErrorMisdirectedRequest
 
 type MisdirectedRequest interface {
 	ClientError

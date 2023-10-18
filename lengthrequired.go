@@ -8,7 +8,9 @@ var _ Error          = internalLengthRequired{}
 var _ ClientError    = internalLengthRequired{}
 var _ LengthRequired = internalLengthRequired{}
 
-var ErrLengthRequired error = LengthRequiredWrap(nil)
+var ClientErrorLengthRequired ClientError = LengthRequiredWrap(nil).(LengthRequired)
+var ErrHTTPLengthRequired     Error       = ClientErrorLengthRequired
+var ErrLengthRequired         error       = ClientErrorLengthRequired
 
 type LengthRequired interface {
 	ClientError

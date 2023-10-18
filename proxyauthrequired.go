@@ -8,7 +8,9 @@ var _ Error             = internalProxyAuthRequired{}
 var _ ClientError       = internalProxyAuthRequired{}
 var _ ProxyAuthRequired = internalProxyAuthRequired{}
 
-var ErrProxyAuthRequired error = ProxyAuthRequiredWrap(nil)
+var ClientErrorProxyAuthRequired ClientError = ProxyAuthRequiredWrap(nil).(ProxyAuthRequired)
+var ErrHTTPProxyAuthRequired     Error       = ClientErrorProxyAuthRequired
+var ErrProxyAuthRequired         error       = ClientErrorProxyAuthRequired
 
 type ProxyAuthRequired interface {
 	ClientError

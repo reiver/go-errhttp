@@ -8,7 +8,9 @@ var _ Error              = internalPreconditionFailed{}
 var _ ClientError        = internalPreconditionFailed{}
 var _ PreconditionFailed = internalPreconditionFailed{}
 
-var ErrPreconditionFailed error = PreconditionFailedWrap(nil)
+var ClientErrorPreconditionFailed ClientError = PreconditionFailedWrap(nil).(PreconditionFailed)
+var ErrHTTPPreconditionFailed     Error       = ClientErrorPreconditionFailed
+var ErrPreconditionFailed         error       = ClientErrorPreconditionFailed
 
 type PreconditionFailed interface {
 	ClientError

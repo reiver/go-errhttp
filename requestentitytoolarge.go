@@ -8,7 +8,9 @@ var _ Error                 = internalRequestEntityTooLarge{}
 var _ ClientError           = internalRequestEntityTooLarge{}
 var _ RequestEntityTooLarge = internalRequestEntityTooLarge{}
 
-var ErrRequestEntityTooLarge error = RequestEntityTooLargeWrap(nil)
+var ClientErrorRequestEntityTooLarge ClientError = RequestEntityTooLargeWrap(nil).(RequestEntityTooLarge)
+var ErrHTTPRequestEntityTooLarge     Error       = ClientErrorRequestEntityTooLarge
+var ErrRequestEntityTooLarge         error       = ClientErrorRequestEntityTooLarge
 
 type RequestEntityTooLarge interface {
 	ClientError

@@ -8,7 +8,9 @@ var _ Error               = internalUnprocessableEntity{}
 var _ ClientError         = internalUnprocessableEntity{}
 var _ UnprocessableEntity = internalUnprocessableEntity{}
 
-var ErrUnprocessableEntity error = UnprocessableEntityWrap(nil)
+var ClientErrorUnprocessableEntity ClientError = UnprocessableEntityWrap(nil).(UnprocessableEntity)
+var ErrHTTPUnprocessableEntity     Error       = ClientErrorUnprocessableEntity
+var ErrUnprocessableEntity         error       = ClientErrorUnprocessableEntity
 
 type UnprocessableEntity interface {
 	ClientError

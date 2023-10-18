@@ -8,7 +8,9 @@ var _ Error           = internalTooManyRequests{}
 var _ ClientError     = internalTooManyRequests{}
 var _ TooManyRequests = internalTooManyRequests{}
 
-var ErrTooManyRequests error = TooManyRequestsWrap(nil)
+var ClientErrorTooManyRequests ClientError = TooManyRequestsWrap(nil).(TooManyRequests)
+var ErrHTTPTooManyRequests     Error       = ClientErrorTooManyRequests
+var ErrTooManyRequests         error       = ClientErrorTooManyRequests
 
 type TooManyRequests interface {
 	ClientError

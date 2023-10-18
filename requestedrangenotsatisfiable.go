@@ -8,7 +8,9 @@ var _ Error                        = internalRequestedRangeNotSatisfiable{}
 var _ ClientError                  = internalRequestedRangeNotSatisfiable{}
 var _ RequestedRangeNotSatisfiable = internalRequestedRangeNotSatisfiable{}
 
-var ErrRequestedRangeNotSatisfiable error = RequestedRangeNotSatisfiableWrap(nil)
+var ClientErrorRequestedRangeNotSatisfiable ClientError = RequestedRangeNotSatisfiableWrap(nil).(RequestedRangeNotSatisfiable)
+var ErrHTTPRequestedRangeNotSatisfiable     Error       = ClientErrorRequestedRangeNotSatisfiable
+var ErrRequestedRangeNotSatisfiable         error       = ClientErrorRequestedRangeNotSatisfiable
 
 type RequestedRangeNotSatisfiable interface {
 	ClientError

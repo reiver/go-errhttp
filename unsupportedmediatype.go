@@ -8,7 +8,9 @@ var _ Error                = internalUnsupportedMediaType{}
 var _ ClientError          = internalUnsupportedMediaType{}
 var _ UnsupportedMediaType = internalUnsupportedMediaType{}
 
-var ErrUnsupportedMediaType error = UnsupportedMediaTypeWrap(nil)
+var ClientErrorUnsupportedMediaType ClientError = UnsupportedMediaTypeWrap(nil).(UnsupportedMediaType)
+var ErrHTTPUnsupportedMediaType     Error       = ClientErrorUnsupportedMediaType
+var ErrUnsupportedMediaType         error       = ClientErrorUnsupportedMediaType
 
 type UnsupportedMediaType interface {
 	ClientError

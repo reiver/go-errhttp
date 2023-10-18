@@ -8,7 +8,9 @@ var _ Error       = internalTooEarly{}
 var _ ClientError = internalTooEarly{}
 var _ TooEarly    = internalTooEarly{}
 
-var ErrTooEarly error = TooEarlyWrap(nil)
+var ClientErrorTooEarly ClientError = TooEarlyWrap(nil).(TooEarly)
+var ErrHTTPTooEarly     Error       = ClientErrorTooEarly
+var ErrTooEarly         error       = ClientErrorTooEarly
 
 type TooEarly interface {
 	ClientError

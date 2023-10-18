@@ -8,7 +8,9 @@ var _ Error          = internalNotImplemented{}
 var _ ServerError    = internalNotImplemented{}
 var _ NotImplemented = internalNotImplemented{}
 
-var ErrNotImplemented error = NotImplementedWrap(nil)
+var ServerErrorNotImplemented ServerError = NotImplementedWrap(nil).(NotImplemented)
+var ErrHTTPNotImplemented     Error       = ServerErrorNotImplemented
+var ErrNotImplemented         error       = ServerErrorNotImplemented
 
 type NotImplemented interface {
 	ServerError

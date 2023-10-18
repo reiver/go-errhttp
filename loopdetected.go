@@ -8,7 +8,9 @@ var _ Error        = internalLoopDetected{}
 var _ ServerError  = internalLoopDetected{}
 var _ LoopDetected = internalLoopDetected{}
 
-var ErrLoopDetected error = LoopDetectedWrap(nil)
+var ServerErrorLoopDetected ServerError = LoopDetectedWrap(nil).(LoopDetected)
+var ErrHTTPLoopDetected     Error       = ServerErrorLoopDetected
+var ErrLoopDetected         error       = ServerErrorLoopDetected
 
 type LoopDetected interface {
 	ServerError

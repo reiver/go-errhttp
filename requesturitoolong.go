@@ -8,7 +8,9 @@ var _ Error             = internalRequestURITooLong{}
 var _ ClientError       = internalRequestURITooLong{}
 var _ RequestURITooLong = internalRequestURITooLong{}
 
-var ErrRequestURITooLong error = RequestURITooLongWrap(nil)
+var ClientErrorRequestURITooLong ClientError = RequestURITooLongWrap(nil).(RequestURITooLong)
+var ErrHTTPRequestURITooLong     Error       = ClientErrorRequestURITooLong
+var ErrRequestURITooLong         error       = ClientErrorRequestURITooLong
 
 type RequestURITooLong interface {
 	ClientError

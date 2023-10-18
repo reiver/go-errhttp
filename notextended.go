@@ -8,7 +8,9 @@ var _ Error       = internalNotExtended{}
 var _ ServerError = internalNotExtended{}
 var _ NotExtended = internalNotExtended{}
 
-var ErrNotExtended error = NotExtendedWrap(nil)
+var ServerErrorNotExtended ServerError = NotExtendedWrap(nil).(NotExtended)
+var ErrHTTPNotExtended     Error       = ServerErrorNotExtended
+var ErrNotExtended         error       = ServerErrorNotExtended
 
 type NotExtended interface {
 	ServerError

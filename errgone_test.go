@@ -1,7 +1,5 @@
 package errhttp_test
 
-//@TODO: THIS TEST IS GIVING A WEIRD ERROR
-/*
 import (
 	"testing"
 
@@ -49,4 +47,3 @@ func TestErrGone(t *testing.T) {
 		}
 	}
 }
-*/

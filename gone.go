@@ -8,10 +8,12 @@ var _ Error       = internalGone{}
 var _ ClientError = internalGone{}
 var _ Gone        = internalGone{}
 
-var ErrGone error = GoneWrap(nil)
+var ClientErrorGone ClientError = GoneWrap(nil).(Gone)
+var ErrHTTPGone     Error       = ClientErrorGone
+var ErrGone         error       = ClientErrorGone
 
 type Gone interface {
-	ClientError()
+	ClientError
 	Gone()
 }
 

@@ -8,7 +8,9 @@ var _ Error          = internalGatewayTimeout{}
 var _ ServerError    = internalGatewayTimeout{}
 var _ GatewayTimeout = internalGatewayTimeout{}
 
-var ErrGatewayTimeout error = GatewayTimeoutWrap(nil)
+var ServerErrorGatewayTimeout ServerError = GatewayTimeoutWrap(nil).(GatewayTimeout)
+var ErrHTTPGatewayTimeout     Error       = ServerErrorGatewayTimeout
+var ErrGatewayTimeout         error       = ServerErrorGatewayTimeout
 
 type GatewayTimeout interface {
 	ServerError

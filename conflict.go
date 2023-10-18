@@ -8,7 +8,9 @@ var _ Error       = internalConflict{}
 var _ ClientError = internalConflict{}
 var _ Conflict    = internalConflict{}
 
-var ErrConflict error = ConflictWrap(nil)
+var ClientErrorConflict ClientError = ConflictWrap(nil).(Conflict)
+var ErrHTTPConflict     Error       = ClientErrorConflict
+var ErrConflict         error       = ClientErrorConflict
 
 type Conflict interface {
 	ClientError

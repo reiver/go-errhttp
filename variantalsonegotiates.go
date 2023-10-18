@@ -8,7 +8,9 @@ var _ Error                 = internalVariantAlsoNegotiates{}
 var _ ServerError           = internalVariantAlsoNegotiates{}
 var _ VariantAlsoNegotiates = internalVariantAlsoNegotiates{}
 
-var ErrVariantAlsoNegotiates error = VariantAlsoNegotiatesWrap(nil)
+var ServerErrorVariantAlsoNegotiates ServerError = VariantAlsoNegotiatesWrap(nil).(VariantAlsoNegotiates)
+var ErrHTTPVariantAlsoNegotiates     Error       = ServerErrorVariantAlsoNegotiates
+var ErrVariantAlsoNegotiates         error       = ServerErrorVariantAlsoNegotiates
 
 type VariantAlsoNegotiates interface {
 	ServerError

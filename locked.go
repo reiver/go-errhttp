@@ -8,7 +8,9 @@ var _ Error        = internalLocked{}
 var _ ClientError  = internalLocked{}
 var _ Locked       = internalLocked{}
 
-var ErrLocked error = LockedWrap(nil)
+var ClientErrorLocked ClientError = LockedWrap(nil).(Locked)
+var ErrHTTPLocked     Error       = ClientErrorLocked
+var ErrLocked         error       = ClientErrorLocked
 
 type Locked interface {
 	ClientError

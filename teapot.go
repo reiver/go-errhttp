@@ -8,7 +8,9 @@ var _ Error       = internalTeapot{}
 var _ ClientError = internalTeapot{}
 var _ Teapot      = internalTeapot{}
 
-var ErrTeapot error = TeapotWrap(nil)
+var ClientErrorTeapot ClientError = TeapotWrap(nil).(Teapot)
+var ErrHTTPTeapot     Error       = ClientErrorTeapot
+var ErrTeapot         error       = ClientErrorTeapot
 
 type Teapot interface {
 	ClientError

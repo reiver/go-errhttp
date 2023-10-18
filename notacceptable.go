@@ -8,7 +8,9 @@ var _ Error         = internalNotAcceptable{}
 var _ ClientError   = internalNotAcceptable{}
 var _ NotAcceptable = internalNotAcceptable{}
 
-var ErrNotAcceptable error = NotAcceptableWrap(nil)
+var ClientErrorNotAcceptable ClientError = NotAcceptableWrap(nil).(NotAcceptable)
+var ErrHTTPNotAcceptable     Error       = ClientErrorNotAcceptable
+var ErrNotAcceptable         error       = ClientErrorNotAcceptable
 
 type NotAcceptable interface {
 	ClientError

@@ -8,7 +8,9 @@ var _ Error                       = internalRequestHeaderFieldsTooLarge{}
 var _ ClientError                 = internalRequestHeaderFieldsTooLarge{}
 var _ RequestHeaderFieldsTooLarge = internalRequestHeaderFieldsTooLarge{}
 
-var ErrRequestHeaderFieldsTooLarge error = RequestHeaderFieldsTooLargeWrap(nil)
+var ClientErrorRequestHeaderFieldsTooLarge ClientError = RequestHeaderFieldsTooLargeWrap(nil).(RequestHeaderFieldsTooLarge)
+var ErrHTTPRequestHeaderFieldsTooLarge     Error       = ClientErrorRequestHeaderFieldsTooLarge
+var ErrRequestHeaderFieldsTooLarge         error       = ClientErrorRequestHeaderFieldsTooLarge
 
 type RequestHeaderFieldsTooLarge interface {
 	ClientError

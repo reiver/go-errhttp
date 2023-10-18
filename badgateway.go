@@ -8,7 +8,9 @@ var _ Error       = internalBadGateway{}
 var _ ServerError = internalBadGateway{}
 var _ BadGateway  = internalBadGateway{}
 
-var ErrBadGateway error = BadGatewayWrap(nil)
+var ServerErrorBadGateway ServerError = BadGatewayWrap(nil).(BadGateway)
+var ErrHTTPBadGateway     Error       = ServerErrorBadGateway
+var ErrBadGateway         error       = ServerErrorBadGateway
 
 type BadGateway interface {
 	ServerError

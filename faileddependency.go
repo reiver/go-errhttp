@@ -8,7 +8,9 @@ var _ Error            = internalFailedDependency{}
 var _ ClientError      = internalFailedDependency{}
 var _ FailedDependency = internalFailedDependency{}
 
-var ErrFailedDependency error = FailedDependencyWrap(nil)
+var ClientErrorFailedDependency ClientError = FailedDependencyWrap(nil).(FailedDependency)
+var ErrHTTPFailedDependency     Error       = ClientErrorFailedDependency
+var ErrFailedDependency         error       = ClientErrorFailedDependency
 
 type FailedDependency interface {
 	ClientError

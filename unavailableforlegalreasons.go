@@ -8,7 +8,9 @@ var _ Error                      = internalUnavailableForLegalReasons{}
 var _ ClientError                = internalUnavailableForLegalReasons{}
 var _ UnavailableForLegalReasons = internalUnavailableForLegalReasons{}
 
-var ErrUnavailableForLegalReasons error = UnavailableForLegalReasonsWrap(nil)
+var ClientErrorUnavailableForLegalReasons ClientError = UnavailableForLegalReasonsWrap(nil).(UnavailableForLegalReasons)
+var ErrHTTPUnavailableForLegalReasons     Error       = ClientErrorUnavailableForLegalReasons
+var ErrUnavailableForLegalReasons         error       = ClientErrorUnavailableForLegalReasons
 
 type UnavailableForLegalReasons interface {
 	ClientError

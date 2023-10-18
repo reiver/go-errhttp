@@ -8,7 +8,9 @@ var _ Error               = internalInsufficientStorage{}
 var _ ServerError         = internalInsufficientStorage{}
 var _ InsufficientStorage = internalInsufficientStorage{}
 
-var ErrInsufficientStorage error = InsufficientStorageWrap(nil)
+var ServerErrorInsufficientStorage ServerError = InsufficientStorageWrap(nil).(InsufficientStorage)
+var ErrHTTPInsufficientStorage     Error       = ServerErrorInsufficientStorage
+var ErrInsufficientStorage         error       = ServerErrorInsufficientStorage
 
 type InsufficientStorage interface {
 	ServerError

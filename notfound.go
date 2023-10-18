@@ -8,7 +8,9 @@ var _ Error       = internalNotFound{}
 var _ ClientError = internalNotFound{}
 var _ NotFound    = internalNotFound{}
 
-var ErrNotFound error = NotFoundWrap(nil)
+var ClientErrorNotFound ClientError = NotFoundWrap(nil).(NotFound)
+var ErrHTTPNotFound     Error       = ClientErrorNotFound
+var ErrNotFound         error       = ClientErrorNotFound
 
 type NotFound  interface {
 	ClientError

@@ -8,7 +8,9 @@ var _ Error       = internalBadRequest{}
 var _ ClientError = internalBadRequest{}
 var _ BadRequest  = internalBadRequest{}
 
-var ErrBadRequest error = BadRequestWrap(nil)
+var ClientErrorBadRequest ClientError = BadRequestWrap(nil).(BadRequest)
+var ErrHTTPBadRequest     Error       = ClientErrorBadRequest
+var ErrBadRequest         error       = ClientErrorBadRequest
 
 type BadRequest interface {
 	ClientError

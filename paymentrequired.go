@@ -8,7 +8,9 @@ var _ Error           = internalPaymentRequired{}
 var _ ClientError     = internalPaymentRequired{}
 var _ PaymentRequired = internalPaymentRequired{}
 
-var ErrPaymentRequired error = PaymentRequiredWrap(nil)
+var ClientErrorPaymentRequired ClientError = PaymentRequiredWrap(nil).(PaymentRequired)
+var ErrHTTPPaymentRequired     Error       = ClientErrorPaymentRequired
+var ErrPaymentRequired         error       = ClientErrorPaymentRequired
 
 type PaymentRequired interface {
 	ClientError

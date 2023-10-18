@@ -8,7 +8,9 @@ var _ Error          = internalRequestTimeout{}
 var _ ClientError    = internalRequestTimeout{}
 var _ RequestTimeout = internalRequestTimeout{}
 
-var ErrRequestTimeout error = RequestTimeoutWrap(nil)
+var ClientErrorRequestTimeout ClientError = RequestTimeoutWrap(nil).(RequestTimeout)
+var ErrHTTPRequestTimeout     Error       = ClientErrorRequestTimeout
+var ErrRequestTimeout         error       = ClientErrorRequestTimeout
 
 type RequestTimeout interface {
 	ClientError

@@ -8,7 +8,9 @@ var _ Error            = internalMethodNotAllowed{}
 var _ ClientError      = internalMethodNotAllowed{}
 var _ MethodNotAllowed = internalMethodNotAllowed{}
 
-var ErrMethodNotAllowed error = MethodNotAllowedWrap(nil)
+var ClientErrorMethodNotAllowed ClientError = MethodNotAllowedWrap(nil).(MethodNotAllowed)
+var ErrHTTPMethodNotAllowed     Error       = ClientErrorMethodNotAllowed
+var ErrMethodNotAllowed         error       = ClientErrorMethodNotAllowed
 
 type MethodNotAllowed interface {
 	ClientError

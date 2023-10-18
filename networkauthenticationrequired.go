@@ -8,7 +8,9 @@ var _ Error                         = internalNetworkAuthenticationRequired{}
 var _ ServerError                   = internalNetworkAuthenticationRequired{}
 var _ NetworkAuthenticationRequired = internalNetworkAuthenticationRequired{}
 
-var ErrNetworkAuthenticationRequired error = NetworkAuthenticationRequiredWrap(nil)
+var ServerErrorNetworkAuthenticationRequired ServerError = NetworkAuthenticationRequiredWrap(nil).(NetworkAuthenticationRequired)
+var ErrHTTPNetworkAuthenticationRequired     Error       = ServerErrorNetworkAuthenticationRequired
+var ErrNetworkAuthenticationRequired         error       = ServerErrorNetworkAuthenticationRequired
 
 type NetworkAuthenticationRequired interface {
 	ServerError

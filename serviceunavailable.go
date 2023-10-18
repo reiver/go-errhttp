@@ -8,7 +8,9 @@ var _ Error              = internalServiceUnavailable{}
 var _ ServerError        = internalServiceUnavailable{}
 var _ ServiceUnavailable = internalServiceUnavailable{}
 
-var ErrServiceUnavailable error = ServiceUnavailableWrap(nil)
+var ServerErrorServiceUnavailable ServerError = ServiceUnavailableWrap(nil).(ServiceUnavailable)
+var ErrHTTPServiceUnavailable     Error       = ServerErrorServiceUnavailable
+var ErrServiceUnavailable         error       = ServerErrorServiceUnavailable
 
 type ServiceUnavailable interface {
 	ServerError
