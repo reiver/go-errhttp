@@ -4,6 +4,25 @@ import (
 	"net/http"
 )
 
+var _ http.Handler = ErrHTTPBadGateway
+var _ http.Handler = ErrHTTPConflict
+var _ http.Handler = ErrHTTPExpectationFailed
+var _ http.Handler = ErrHTTPFailedDependency
+var _ http.Handler = ErrHTTPForbidden
+var _ http.Handler = ErrHTTPGatewayTimeout
+var _ http.Handler = ErrHTTPGone
+var _ http.Handler = ErrHTTPHTTPVersionNotSupported
+var _ http.Handler = ErrHTTPInsufficientStorage
+var _ http.Handler = ErrHTTPInternalServerError
+var _ http.Handler = ErrHTTPLengthRequired
+var _ http.Handler = ErrHTTPLocked
+var _ http.Handler = ErrHTTPLoopDetected
+var _ http.Handler = ErrHTTPMethodNotAllowed
+var _ http.Handler = ErrHTTPMisdirectedRequest
+//...
+var _ http.Handler = ErrHTTPUpgradeRequired
+var _ http.Handler = ErrHTTPVariantAlsoNegotiates
+
 func (receiver internalBadGateway) ServeHTTP(responseWriter http.ResponseWriter, request *http.Request) {
 	http.Error(responseWriter, receiver.Error(), receiver.ErrHTTP())
 }
