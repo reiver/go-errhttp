@@ -5,7 +5,7 @@ import (
 
 	"net/http"
 
-	"sourcecode.social/reiver/go-errhttp"
+	"github.com/reiver/go-errhttp"
 )
 
 func TestErrInternalServerError(t *testing.T) {

@@ -5,7 +5,7 @@ import (
 
 	"net/http"
 
-	"sourcecode.social/reiver/go-errhttp"
+	"github.com/reiver/go-errhttp"
 )
 
 func TestErrRequestURITooLong(t *testing.T) {
