@@ -4,16 +4,16 @@ Package **errhttp** provides errors and types that make dealing with HTTP respon
 
 ## Documention
 
-Online documentation, which includes examples, can be found at: http://godoc.org/sourcecode.social/reiver/go-errhttp
+Online documentation, which includes examples, can be found at: http://godoc.org/github.com/reiver/go-errhttp
 
-[![GoDoc](https://godoc.org/sourcecode.social/reiver/go-errhttp?status.svg)](https://godoc.org/sourcecode.social/reiver/go-errhttp)
+[![GoDoc](https://godoc.org/github.com/reiver/go-errhttp?status.svg)](https://godoc.org/github.com/reiver/go-errhttp)
 
 ## Example
 
 Here is an example of wrapping an error:
 
 ```go
-	import "sourcecode.social/reiver/go-errhttp"
+	import "github.com/reiver/go-errhttp"
 	
 	// ...
 	
@@ -44,7 +44,7 @@ Here is an example of wrapping an error:
 Here is an example of using one of the package global variable errors:
 
 ```go
-	import "sourcecode.social/reiver/go-errhttp"
+	import "github.com/reiver/go-errhttp"
 	
 	// ...
 	
@@ -73,7 +73,7 @@ Here is an example of using one of the package global variable errors:
 Here is another example, where it used the `.ErrHTTP()` method to get the HTTP response status code:
 
 ```go
-	import "sourcecode.social/reiver/go-errhttp"
+	import "github.com/reiver/go-errhttp"
 	
 	// ...
 	
@@ -96,3 +96,23 @@ Here is another example, where it used the `.ErrHTTP()` method to get the HTTP r
 		//@TODO
 	}
 ```
+
+## Import
+
+To import package **errhttp** use import code like the follownig:
+
+```
+import "github.com/reiver/go-errhttp"
+```
+
+## Installation
+
+To install package **errhttp** do the following:
+
+```
+GOPROXY=direct go get https://github.com/reiver/go-errhttp
+```
+
+## Author
+
+Package **errhttp** was written by [Charles Iliya Krempeaux](http://reiver.link/)
