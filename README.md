@@ -97,6 +97,17 @@ Here is another example, where it used the `.ErrHTTP()` method to get the HTTP r
 	}
 ```
 
+Here is an example of returning an error based on an HTTP status-code:
+
+```golang
+
+	import "github.com/reiver/go-errhttp"
+	
+	// ...
+
+	err := errhttp.Return(resp.StatusCode)
+```
+
 ## Import
 
 To import package **errhttp** use import code like the follownig:
